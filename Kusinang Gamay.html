@@ -1,0 +1,1123 @@
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A warm, modern cooking-themed homepage for recipes, culinary stories, and home cooks." />
+  <title>Gather & Cook</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f8f3e9;
+      --paper: #fffdf8;
+      --ink: #24231f;
+      --muted: #716d63;
+      --green: #48624b;
+      --green-dark: #2f4634;
+      --terracotta: #bb6547;
+      --terracotta-dark: #994a31;
+      --gold: #d9a441;
+      --line: rgba(36, 35, 31, 0.12);
+      --shadow: 0 18px 50px rgba(44, 38, 29, 0.10);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* NAVBAR */
+    .site-header {
+      position: fixed;
+      z-index: 1000;
+      inset: 0 0 auto 0;
+      background: rgba(248, 243, 233, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(36, 35, 31, 0.08);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-family: "DM Sans", sans-serif;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+      color: #4d4a43;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--terracotta);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: var(--green);
+      color: white !important;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 5px auto;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 128px 0 70px;
+      display: grid;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(217, 164, 65, 0.13);
+      top: 120px;
+      left: -160px;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 68px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--terracotta-dark);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--terracotta);
+    }
+
+    .hero h1 {
+      max-width: 690px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.25rem, 7vw, 6.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 em {
+      color: var(--terracotta);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 650px;
+    }
+
+    .hero-image-wrap {
+      position: absolute;
+      inset: 0 0 40px 45px;
+      overflow: hidden;
+      border-radius: 220px 220px 34px 34px;
+      box-shadow: var(--shadow);
+      background: #ddd;
+    }
+
+    .hero-image-wrap img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .recipe-float {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: min(280px, 70%);
+      background: var(--paper);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(36, 35, 31, 0.07);
+    }
+
+    .recipe-float small {
+      color: var(--terracotta);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .recipe-float h3 {
+      margin-top: 6px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+    }
+
+    .floating-tag {
+      position: absolute;
+      top: 70px;
+      right: -18px;
+      background: var(--green-dark);
+      color: white;
+      padding: 13px 18px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      transform: rotate(4deg);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.25rem, 4vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .section-heading p {
+      max-width: 500px;
+      color: var(--muted);
+    }
+
+    /* CATEGORIES */
+    .categories {
+      background: var(--paper);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      padding: 28px 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fff;
+      transition: 0.25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 35px rgba(44, 38, 29, 0.08);
+      border-color: rgba(187, 101, 71, 0.35);
+    }
+
+    .category-icon {
+      width: 54px;
+      height: 54px;
+      margin-bottom: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(187, 101, 71, 0.10);
+      font-size: 1.6rem;
+    }
+
+    .category-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .category-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* FEATURED */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+    }
+
+    .featured-main,
+    .featured-small {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      min-height: 560px;
+      background: #ddd;
+    }
+
+    .featured-main img,
+    .featured-small img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .featured-main:hover img,
+    .featured-small:hover img {
+      transform: scale(1.035);
+    }
+
+    .image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14, 14, 12, 0.82), rgba(14, 14, 12, 0.02) 62%);
+      display: flex;
+      align-items: end;
+      padding: 34px;
+      color: white;
+    }
+
+    .image-overlay span {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #ffe1bf;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .image-overlay h3 {
+      max-width: 650px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .featured-small {
+      min-height: 268px;
+    }
+
+    .featured-small .image-overlay {
+      padding: 24px;
+    }
+
+    .featured-small .image-overlay h3 {
+      font-size: 1.8rem;
+    }
+
+    /* STORY */
+    .story {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .story-photo {
+      border-radius: 180px 180px 28px 28px;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .story-photo img {
+      height: 100%;
+      min-height: 560px;
+      object-fit: cover;
+    }
+
+    .story .eyebrow {
+      color: #f0be8c;
+    }
+
+    .story .eyebrow::before {
+      background: #f0be8c;
+    }
+
+    .story h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      margin-bottom: 24px;
+    }
+
+    .story p {
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .story-list {
+      display: grid;
+      gap: 15px;
+      margin-bottom: 32px;
+      list-style: none;
+    }
+
+    .story-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .story-list li::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffd6a3;
+      flex: 0 0 auto;
+    }
+
+    /* NEWSLETTER */
+    .newsletter-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      padding: 62px;
+      background: #e6b95f;
+    }
+
+    .newsletter-wrap::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      right: -100px;
+      top: -110px;
+    }
+
+    .newsletter-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .newsletter h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 4.5vw, 4.3rem);
+      line-height: 1.02;
+      margin-bottom: 16px;
+    }
+
+    .newsletter p {
+      max-width: 630px;
+      color: rgba(36, 35, 31, 0.72);
+      margin-bottom: 26px;
+    }
+
+    .subscribe-form {
+      max-width: 640px;
+      display: flex;
+      background: var(--paper);
+      padding: 8px;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(77, 54, 16, 0.13);
+    }
+
+    .subscribe-form input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: none;
+      background: transparent;
+      padding: 0 18px;
+      color: var(--ink);
+    }
+
+    .subscribe-form button {
+      border: 0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .story-grid,
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero-visual {
+        min-height: 620px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-main {
+        min-height: 480px;
+      }
+
+      .side-stack {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .story-photo {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 14px;
+        right: 14px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 18px;
+        border-radius: 18px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 10px 12px;
+      }
+
+      .nav-cta {
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.2rem, 15vw, 5.2rem);
+      }
+
+      .hero-visual {
+        min-height: 510px;
+      }
+
+      .hero-image-wrap {
+        left: 18px;
+      }
+
+      .floating-tag {
+        right: 4px;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .category-grid,
+      .side-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-main {
+        min-height: 440px;
+      }
+
+      .featured-small {
+        min-height: 330px;
+      }
+
+      .newsletter-wrap {
+        padding: 42px 24px;
+      }
+
+      .subscribe-form {
+        flex-direction: column;
+        border-radius: 18px;
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .subscribe-form input {
+        min-height: 48px;
+      }
+
+      .subscribe-form .btn {
+        width: 100%;
+      }
+
+      .footer-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        padding-bottom: 40px;
+      }
+
+      .hero-visual {
+        min-height: 455px;
+      }
+
+      .hero-image-wrap {
+        inset: 0 0 34px 10px;
+        border-radius: 160px 160px 24px 24px;
+      }
+
+      .recipe-float {
+        padding: 16px;
+        width: 230px;
+      }
+
+      .floating-tag {
+        top: 40px;
+        font-size: 0.78rem;
+      }
+
+      .hero-stats {
+        gap: 20px;
+      }
+
+      .image-overlay {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#home" class="brand" aria-label="Gather and Cook home">
+        <span class="brand-mark">G</span>
+        <span>Gather & Cook</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#recipes">Recipes</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+          <li><a class="nav-cta" href="#recipes">Start Cooking</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="eyebrow">Made for home cooks</div>
+          <h1>Cook food worth <em>gathering</em> around.</h1>
+          <p class="hero-copy">
+            Simple recipes, fresh ingredients, and the kind of meals that make
+            everyone stay at the table a little longer.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#recipes" class="btn btn-primary">Explore recipes <span>→</span></a>
+            <a href="#story" class="btn btn-secondary">Meet the kitchen</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>120+</strong>
+              <span>tested recipes</span>
+            </div>
+            <div class="stat">
+              <strong>30 min</strong>
+              <span>weeknight favorites</span>
+            </div>
+            <div class="stat">
+              <strong>Fresh</strong>
+              <span>seasonal ideas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-image-wrap">
+            <img
+              src="https://images.pexels.com/photos/9016834/pexels-photo-9016834.jpeg?cs=srgb&dl=pexels-kevin-malik-9016834.jpg&fm=jpg"
+              alt="Home cook preparing vegetables in a bright kitchen"
+            />
+          </div>
+
+          <div class="floating-tag">Fresh • Simple • Homemade</div>
+
+          <div class="recipe-float">
+            <small>Today’s mood</small>
+            <h3>Something warm, easy & made from scratch.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories" id="recipes">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Find your next meal</div>
+            <h2>Cook by mood.</h2>
+          </div>
+          <p>
+            Whether you have twenty minutes, a slow Sunday afternoon, or friends
+            coming over, there is something here for the moment.
+          </p>
+        </div>
+
+        <div class="category-grid">
+          <article class="category-card reveal">
+            <div class="category-icon">🍳</div>
+            <h3>Quick & Easy</h3>
+            <p>Fast, comforting recipes for busy days and hungry evenings.</p>
+          </article>
+
+          <article class="category-card reveal">
+            <div class="category-icon">🥬</div>
+            <h3>Fresh & Light</h3>
+            <p>Vegetable-forward meals that are colorful, bright, and satisfying.</p>
+          </article>
+
+          <article class="category-card reveal">
+            <div class="category-icon">🍝</div>
+            <h3>Comfort Food</h3>
+            <p>Cozy pasta, hearty mains, and familiar flavors made beautifully.</p>
+          </article>
+
+          <article class="category-card reveal">
+            <div class="category-icon">🥖</div>
+            <h3>Bake Something</h3>
+            <p>Bread, pastries, and sweet things that make the kitchen smell amazing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Featured recipes</div>
+            <h2>What’s cooking?</h2>
+          </div>
+          <p>
+            A few kitchen favorites chosen for bold flavor, simple technique,
+            and plenty of reasons to make them again.
+          </p>
+        </div>
+
+        <div class="featured-grid">
+          <a href="#" class="featured-main reveal">
+            <img
+              src="https://images.pexels.com/photos/3009323/pexels-photo-3009323.jpeg?cs=srgb&dl=pexels-jonathanborba-3009323.jpg&fm=jpg"
+              alt="Shrimp pasta served on a ceramic plate"
+            />
+            <div class="image-overlay">
+              <div>
+                <span>Weekend favorite • 35 min</span>
+                <h3>Garlic shrimp pasta with herbs & chili.</h3>
+              </div>
+            </div>
+          </a>
+
+          <div class="side-stack">
+            <a href="#" class="featured-small reveal">
+              <img
+                src="https://images.pexels.com/photos/5317183/pexels-photo-5317183.jpeg?cs=srgb&dl=pexels-campbell-downie-3549547-5317183.jpg&fm=jpg"
+                alt="Fresh plated dish with greens and vegetables"
+              />
+              <div class="image-overlay">
+                <div>
+                  <span>Fresh plate • 20 min</span>
+                  <h3>Garden greens with crispy bites.</h3>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="featured-small reveal">
+              <img
+                src="https://images.pexels.com/photos/6126973/pexels-photo-6126973.jpeg?cs=srgb&dl=pexels-rachel-claire-6126973.jpg&fm=jpg"
+                alt="Food being seasoned in a pan in a professional kitchen"
+              />
+              <div class="image-overlay">
+                <div>
+                  <span>Kitchen basics • 15 min</span>
+                  <h3>Build bigger flavor with simple spices.</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="container story-grid">
+        <div class="story-photo reveal">
+          <img
+            src="https://images.pexels.com/photos/6126973/pexels-photo-6126973.jpeg?cs=srgb&dl=pexels-rachel-claire-6126973.jpg&fm=jpg"
+            alt="Ingredients and seasoning being cooked in a pan"
+          />
+        </div>
+
+        <div class="story-copy reveal">
+          <div class="eyebrow">Our philosophy</div>
+          <h2>Good cooking doesn’t need to feel complicated.</h2>
+          <p>
+            We believe the best recipes give you confidence, not homework. Start
+            with good ingredients, understand a few dependable techniques, and
+            let the food do the rest.
+          </p>
+
+          <ul class="story-list">
+            <li>Approachable recipes with practical steps</li>
+            <li>Seasonal ingredients you can actually find</li>
+            <li>Flexible ideas for real kitchens and real schedules</li>
+          </ul>
+
+          <a href="#newsletter" class="btn btn-primary">Cook with us <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <div class="container">
+        <div class="newsletter-wrap reveal">
+          <div class="newsletter-content">
+            <div class="eyebrow">From our kitchen to yours</div>
+            <h2>A fresh recipe every week.</h2>
+            <p>
+              Join the table for seasonal recipes, useful cooking notes, and
+              simple ideas for making everyday meals feel special.
+            </p>
+
+            <form class="subscribe-form" id="subscribeForm">
+              <input
+                type="email"
+                id="email"
+                placeholder="Your email address"
+                aria-label="Email address"
+                required
+              />
+              <button class="btn btn-primary" type="submit">Join the table</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Gather & Cook. Made with good ingredients.</div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("subscribeForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const email = document.getElementById("email");
+      alert(`Thanks! ${email.value} is now on the recipe list.`);
+      email.value = "";
+    });
+  </script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/cooking-homepage.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created: {path}")
