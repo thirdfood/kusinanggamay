@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/KusinangGamayIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Menu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fff8ee;
+      --card: #ffffff;
+      --primary: #ff7a00;
+      --secondary: #ffb703;
+      --accent: #ff5e57;
+      --green: #5bbf6a;
+      --text: #4a3426;
+      --muted: #755847;
+      --line: #f3d9b6;
+      --shadow: 0 14px 35px rgba(142, 84, 24, 0.12);
+      --radius: 24px;
+    }
+
+    body {
+      font-family: "Nunito", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 183, 3, 0.18), transparent 22%),
+        radial-gradient(circle at top right, rgba(255, 94, 87, 0.16), transparent 18%),
+        radial-gradient(circle at bottom left, rgba(91, 191, 106, 0.14), transparent 18%),
+        var(--bg);
+      color: var(--text);
+      padding: 24px;
+    }
+
+    .menu-wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .menu-board {
+      position: relative;
+      background: rgba(255,255,255,0.68);
+      backdrop-filter: blur(4px);
+      border: 3px dashed #ffd39a;
+      border-radius: 36px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .menu-board::before,
+    .menu-board::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .menu-board::before {
+      background: var(--secondary);
+      top: -65px;
+      left: -55px;
+    }
+
+    .menu-board::after {
+      background: var(--accent);
+      bottom: -70px;
+      right: -50px;
+    }
+
+    .header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(13px, 2vw, 18px);
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      padding: 8px 18px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      box-shadow: 0 10px 22px rgba(255, 122, 0, 0.22);
+    }
+
+    .header h1 {
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 0.95;
+      color: var(--primary);
+      text-shadow: 2px 2px 0 #fff;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: var(--card);
+      border: 2px solid #ffe2be;
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .category-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #fff4e2;
+      font-size: 23px;
+    }
+
+    .item {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-weight: 800;
+      color: var(--text);
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      padding-left: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 2px;
+      position: relative;
+    }
+
+    .sub::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .single-price {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 15px;
+      padding-left: 2px;
+      line-height: 1.45;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      background: #fff;
+      border: 2px solid #ffe2be;
+      border-radius: 24px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-note h3 {
+      font-family: "Baloo 2", cursive;
+      color: var(--accent);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .footer-note p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 14px;
+      }
+
+      .menu-board {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .item-name {
+        font-size: 16px;
+      }
+
+      .sub,
+      .single-price,
+      .footer-note p {
+        font-size: 14px;
+      }
+
+      .category-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="menu-wrapper">
+
+    <div class="menu-board"><!-- RETURN BUTTON -->
+<a href="home.html" class="return-button">
+  ← Return
+</a>
+
+<style>
+  .return-button {
+    position: fixed;
+
+    top: 18px;
+    left: 18px;
+
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 18px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+      135deg,
+      #ff6815,
+      #ff8b35
+    );
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow:
+      0 10px 25px rgba(255, 104, 21, 0.25);
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .return-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 14px 30px rgba(255, 104, 21, 0.32);
+  }
+
+  .return-button:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .return-button {
+      top: 12px;
+      left: 12px;
+
+      min-height: 42px;
+
+      padding: 0 15px;
+
+      font-size: 13px;
+    }
+  }
+</style>
+
+      <div class="header">
+        <div class="header-badge">
+          🍽️ Delicious Party Trays & Bilao Menu
+        </div>
+
+        <h1>Food Menu</h1>
+
+        <p>
+          Good Food • Good Moments • Made to Share
+        </p>
+      </div>
+
+
+      <div class="grid">
+
+        <!-- MAIN DISHES -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">🍲</span>
+            Main Dishes
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Chopsuey</div>
+            <div class="sub">Plain Chicken — Large P530 | Medium P330</div>
+            <div class="sub">Seafood — Large P550 | Medium P370</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Menudo</div>
+            <div class="sub">Pork — XL P1000 | Large P800 | Medium P500</div>
+            <div class="sub">Chicken — Large P900 | Medium P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Afritada</div>
+            <div class="sub">Pork — XL P1000 | Large P800 | Medium P500</div>
+            <div class="sub">Chicken — Large P900 | Medium P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Buffalo Wings</div>
+            <div class="sub">35 pcs — P750</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Chicken Curry</div>
+            <div class="sub">XL P1000</div>
+            <div class="sub">Large P800</div>
+            <div class="sub">Medium P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Chicken Pochero</div>
+            <div class="sub">XL P1200</div>
+            <div class="sub">Large P800</div>
+            <div class="sub">Medium P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Garlic Chicken</div>
+            <div class="sub">24 pieces — P700</div>
+            <div class="sub">12 pieces — P400</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Buttered Chicken</div>
+            <div class="sub">24 pieces — P700</div>
+            <div class="sub">12 pieces — P400</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Chicken Fillet</div>
+            <div class="sub">Large Tray — P800</div>
+            <div class="sub">Medium — P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Humba</div>
+            <div class="sub">XL P1,500 | Large P800</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Pork Steak</div>
+            <div class="sub">XL P1,500 | Large P800</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Beef Steak</div>
+            <div class="sub">XL P1,500 | Large P800</div>
+          </div>
+
+        </div>
+
+
+        <!-- NOODLES -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">🍜</span>
+            Noodles
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Bam-i</div>
+            <div class="sub">Plain Chicken — Large P480 | Medium P350</div>
+            <div class="sub">Seafood — Large P560 | Medium P370</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Spaghetti</div>
+            <div class="sub">Spag Chicken — Large P500 | Medium P300</div>
+            <div class="sub">Spag Beef — Large P560 | Medium P380</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Creamy Carbonara</div>
+            <div class="sub">Large P600</div>
+            <div class="sub">Medium P400</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Bihon Guisado</div>
+            <div class="sub">Bihon Plain Chicken — Large P500 | Medium P300</div>
+            <div class="sub">Bihon Seafood — Large P520 | Medium P370</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Sotanghon Guisado</div>
+            <div class="sub">Plain Chicken — Large P600 | Medium P430</div>
+            <div class="sub">Sotanghon Seafood — Large P670 | Medium P400</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Pancit Palabok</div>
+            <div class="sub">Medium P400</div>
+            <div class="sub">Large P550</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Pancit Miki</div>
+            <div class="sub">Plain Chicken — Large P530 | Medium P350</div>
+            <div class="sub">Seafood — Large P520 | Medium P350</div>
+          </div>
+
+        </div>
+
+
+        <!-- SEAFOOD & SPECIALS -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">🦐</span>
+            Seafood & Specials
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Kinilaw</div>
+            <div class="sub">Malasugui — P1000</div>
+            <div class="sub">Tuna — P800</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Fish Fillet</div>
+            <div class="sub">Large — P700</div>
+            <div class="sub">Medium — P400</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Garlic Shrimp</div>
+            <div class="sub">Large P1000 | Medium P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Mix Seafood with Sweet Corn</div>
+            <div class="sub">Medium P550 | Large P750</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Sweet and Sour Fish</div>
+            <div class="sub">Large P800 | Medium P450</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Calamares</div>
+            <div class="sub">P700</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Shrimp Tempura</div>
+            <div class="sub">Large P900 | Medium P600</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Mix Veggie Salad</div>
+            <div class="sub">Medium P500 | Large P700</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Arroz Valenciana</div>
+            <div class="sub">Medium P400</div>
+            <div class="sub">Large P550</div>
+          </div>
+
+        </div>
+
+
+        <!-- SNACKS -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">🥟</span>
+            Snacks & Finger Foods
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Puto Cheese</div>
+            <div class="sub">P6.00 each</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Lumpia Chicken or Tuna</div>
+            <div class="sub">P6.00 each</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Cake Lumpia</div>
+            <div class="sub">P550</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Letson Belly</div>
+            <div class="sub">5 kgs — P2,600</div>
+            <div class="sub">7 kgs — P3,600</div>
+          </div>
+
+        </div>
+
+
+        <!-- DESSERTS -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">🍰</span>
+            Desserts
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Ube Rice Cake</div>
+            <div class="sub">Medium P400</div>
+            <div class="sub">Large P530</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Maja Blanca</div>
+            <div class="sub">P450</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Biko with Latik</div>
+            <div class="sub">P500</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Macaroni Salad</div>
+            <div class="sub">P750</div>
+          </div>
+
+        </div>
+
+
+        <!-- NOTES -->
+        <div class="card">
+
+          <h2>
+            <span class="category-icon">📌</span>
+            Notes
+          </h2>
+
+          <div class="item">
+            <div class="item-name">Important Notice</div>
+            <div class="single-price">
+              All prices may change without prior notice. Thank you.
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Tray Sizes</div>
+            <div class="sub">Large tray size — 12.5 x 10.5 x 2.5</div>
+            <div class="sub">Medium tray size — 12 x 8 x 2</div>
+          </div>
+
+          <div class="item">
+            <div class="item-name">Serving Reminder</div>
+            <div class="single-price">
+              Great for parties, family gatherings, office meals, and celebrations.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-note">
+
+        <h3>🍴 Thank You!</h3>
+
+        <p>
+          For orders and reservations, please message us in advance.
+          <span class="highlight">
+            We’re happy to serve your favorites!
+          </span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
