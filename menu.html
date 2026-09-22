@@ -266,6 +266,132 @@
         font-size: 21px;
       }
     }
+
+
+    /* RESPONSIVE / MOBILE AUTO-ADJUST */
+    html {
+      width: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    .menu-wrapper,
+    .menu-board,
+    .grid,
+    .card {
+      min-width: 0;
+    }
+
+    .item-name,
+    .sub,
+    .single-price,
+    .footer-note p {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    img, svg, video, iframe {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 8px;
+      }
+
+      .menu-wrapper {
+        width: 100%;
+      }
+
+      .menu-board {
+        padding: 14px 10px;
+        border-width: 2px;
+        border-radius: 18px;
+      }
+
+      .header {
+        margin-top: 52px;
+        margin-bottom: 18px;
+      }
+
+      .header-badge {
+        max-width: 100%;
+        padding: 7px 12px;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .header h1 {
+        font-size: clamp(32px, 12vw, 44px);
+      }
+
+      .header p {
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .grid {
+        gap: 12px;
+      }
+
+      .card {
+        padding: 14px 12px;
+        border-radius: 18px;
+      }
+
+      .card h2 {
+        font-size: 22px;
+        gap: 7px;
+      }
+
+      .category-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 19px;
+        border-radius: 10px;
+      }
+
+      .item {
+        padding: 10px 0;
+      }
+
+      .item-name {
+        font-size: 15px;
+      }
+
+      .sub,
+      .single-price,
+      .footer-note p {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .footer-note {
+        margin-top: 14px;
+        padding: 14px 12px;
+        border-radius: 18px;
+      }
+
+      .footer-note h3 {
+        font-size: 23px;
+      }
+
+      .return-button {
+        top: 8px;
+        left: 8px;
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+    }
+
   </style>
 </head>
 
