@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="assets/KusinangGamayIcon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kusinang Gamay | Food Gallery</title>
+
+<style>
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+:root {
+    --cream: #fffaf2;
+    --cream-2: #f8ead7;
+    --orange: #d97832;
+    --orange-light: #efa45f;
+    --brown: #74462b;
+    --brown-dark: #402719;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--brown-dark);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf2 0%,
+            #faead4 48%,
+            #f5d4aa 100%
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   RETURN BUTTON
+========================================================= */
+
+.return-button {
+    position: fixed;
+
+    top: 24px;
+    left: 24px;
+
+    z-index: 8000;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 46px;
+
+    padding:
+        11px
+        19px;
+
+    border-radius: 100px;
+
+    background:
+        rgba(255, 250, 242, 0.82);
+
+    border:
+        1px solid
+        rgba(116, 70, 43, 0.14);
+
+    box-shadow:
+        0 10px 30px
+        rgba(78, 45, 25, 0.12);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    color:
+        var(--brown-dark);
+
+    text-decoration: none;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    letter-spacing:
+        0.3px;
+
+    opacity: 0;
+
+    transform:
+        translateX(-25px);
+
+    animation:
+        returnButtonReveal
+        0.8s
+        cubic-bezier(.22, 1, .36, 1)
+        1.35s
+        forwards;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.return-arrow {
+    font-size: 1.15rem;
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.return-button:hover {
+    background:
+        var(--orange);
+
+    color:
+        white;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(120, 70, 35, 0.22);
+}
+
+
+.return-button:hover
+.return-arrow {
+    transform:
+        translateX(-4px);
+}
+
+
+@keyframes returnButtonReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    z-index: -10;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+
+/* BANIG-INSPIRED PATTERN */
+
+.pattern {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.045;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            var(--orange) 25%,
+            transparent 25%
+        ),
+        linear-gradient(
+            -45deg,
+            var(--orange) 25%,
+            transparent 25%
+        ),
+        linear-gradient(
+            45deg,
+            transparent 75%,
+            var(--orange) 75%
+        ),
+        linear-gradient(
+            -45deg,
+            transparent 75%,
+            var(--orange) 75%
+        );
+
+    background-size:
+        48px 48px;
+
+    background-position:
+        0 0,
+        0 24px,
+        24px -24px,
+        -24px 0;
+}
+
+
+/* BACKGROUND GLOW */
+
+.glow {
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    filter:
+        blur(25px);
+
+    opacity: 0.28;
+
+    animation:
+        glowFloat
+        14s
+        ease-in-out
+        infinite;
+}
+
+
+.glow-one {
+    top: -280px;
+    right: -180px;
+
+    background:
+        radial-gradient(
+            circle,
+            #efa45f,
+            transparent 70%
+        );
+}
+
+
+.glow-two {
+    bottom: -290px;
+    left: -220px;
+
+    background:
+        radial-gradient(
+            circle,
+            #ad6c41,
+            transparent 70%
+        );
+
+    animation-delay:
+        -6s;
+}
+
+
+@keyframes glowFloat {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(45px, 30px)
+            scale(1.08);
+    }
+
+}
+
+
+/* =========================================================
+   PAGE TRANSITION
+========================================================= */
+
+.page-transition {
+    position: fixed;
+    inset: 0;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.transition-strip {
+    position: absolute;
+
+    left: -10%;
+
+    width: 120%;
+    height: 18%;
+
+    transform:
+        skewY(-3deg)
+        scaleX(1.05);
+}
+
+
+.strip-1 {
+    top: -2%;
+
+    background:
+        #58341f;
+
+    animation:
+        stripLeft
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .35s forwards;
+}
+
+
+.strip-2 {
+    top: 15%;
+
+    background:
+        #c86f32;
+
+    animation:
+        stripRight
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .43s forwards;
+}
+
+
+.strip-3 {
+    top: 32%;
+
+    background:
+        #efa65d;
+
+    animation:
+        stripLeft
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .51s forwards;
+}
+
+
+.strip-4 {
+    top: 49%;
+
+    background:
+        #f6ca94;
+
+    animation:
+        stripRight
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .59s forwards;
+}
+
+
+.strip-5 {
+    top: 66%;
+
+    background:
+        #c86f32;
+
+    animation:
+        stripLeft
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .67s forwards;
+}
+
+
+.strip-6 {
+    top: 83%;
+
+    background:
+        #58341f;
+
+    animation:
+        stripRight
+        1.1s
+        cubic-bezier(.75, 0, .18, 1)
+        .75s forwards;
+}
+
+
+@keyframes stripLeft {
+
+    from {
+        transform:
+            translateX(0)
+            skewY(-3deg)
+            scaleX(1.05);
+    }
+
+    to {
+        transform:
+            translateX(-120%)
+            skewY(-3deg)
+            scaleX(1.05);
+    }
+
+}
+
+
+@keyframes stripRight {
+
+    from {
+        transform:
+            translateX(0)
+            skewY(-3deg)
+            scaleX(1.05);
+    }
+
+    to {
+        transform:
+            translateX(120%)
+            skewY(-3deg)
+            scaleX(1.05);
+    }
+
+}
+
+
+/* CENTER TRANSITION SYMBOL */
+
+.transition-center {
+    position: absolute;
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        centerDisappear
+        0.65s
+        ease
+        0.6s
+        forwards;
+}
+
+
+.transition-symbol {
+    position: relative;
+
+    width: 85px;
+    height: 85px;
+
+    border-radius: 50%;
+
+    background:
+        #fff5e4;
+
+    box-shadow:
+        0 0 0 13px rgba(255, 245, 228, .15),
+        0 0 0 28px rgba(255, 245, 228, .07);
+
+    animation:
+        symbolReveal
+        0.65s
+        cubic-bezier(.17, .85, .32, 1.3);
+}
+
+
+.transition-symbol::before {
+    content: "";
+
+    position: absolute;
+    inset: -22px;
+
+    border:
+        3px dashed
+        rgba(255, 255, 255, .65);
+
+    border-radius: 50%;
+
+    animation:
+        rotateSymbol
+        4s linear infinite;
+}
+
+
+.transition-symbol::after {
+    content: "";
+
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    top: 50%;
+    left: 50%;
+
+    border-radius: 5px;
+
+    background:
+        var(--orange);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+
+@keyframes symbolReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0)
+            rotate(-100deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+@keyframes centerDisappear {
+
+    to {
+        opacity: 0;
+
+        transform:
+            scale(1.6);
+    }
+
+}
+
+
+@keyframes rotateSymbol {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.page {
+    width:
+        min(1500px, 100%);
+
+    margin: auto;
+
+    padding:
+        65px
+        5%
+        100px;
+
+    animation:
+        pageReveal
+        1.2s
+        cubic-bezier(.22, 1, .36, 1)
+        .6s
+        both;
+}
+
+
+@keyframes pageReveal {
+
+    from {
+        opacity: 0;
+
+        filter:
+            blur(14px);
+
+        transform:
+            translateY(35px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        filter:
+            blur(0);
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 360px;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        60px 0 70px;
+}
+
+
+.hero-inner {
+    max-width: 850px;
+}
+
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 23px;
+
+    padding:
+        9px
+        17px;
+
+    border:
+        1px solid
+        rgba(112, 68, 37, .12);
+
+    border-radius: 100px;
+
+    background:
+        rgba(255, 255, 255, .46);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    color:
+        var(--orange);
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.eyebrow::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        var(--orange);
+
+    box-shadow:
+        0 0 0 5px
+        rgba(217, 120, 50, .12);
+}
+
+
+.hero h1 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:
+        400;
+
+    font-size:
+        clamp(
+            3.7rem,
+            8vw,
+            7.2rem
+        );
+
+    line-height:
+        0.9;
+
+    letter-spacing:
+        -4px;
+
+    color:
+        var(--brown-dark);
+}
+
+
+.hero h1 span {
+    display: inline-block;
+
+    color:
+        var(--orange);
+
+    font-style:
+        italic;
+}
+
+
+.hero p {
+    max-width:
+        650px;
+
+    margin-top:
+        30px;
+
+    color:
+        rgba(64, 39, 25, .68);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.85;
+}
+
+
+/* =========================================================
+   GALLERY HEADER
+========================================================= */
+
+.gallery-header {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom:
+        30px;
+
+    padding-bottom:
+        20px;
+
+    border-bottom:
+        1px solid
+        rgba(89, 52, 30, .12);
+}
+
+
+.gallery-header h2 {
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            1.8rem,
+            4vw,
+            3rem
+        );
+
+    font-weight:
+        400;
+}
+
+
+.gallery-count {
+    flex-shrink: 0;
+
+    color:
+        rgba(63, 39, 26, .52);
+
+    font-size:
+        0.8rem;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   GALLERY GRID
+========================================================= */
+
+.food-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   UNIFORM IMAGE CARDS
+========================================================= */
+
+.food-card {
+    position: relative;
+
+    width: 100%;
+
+    height: 370px;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    cursor: pointer;
+
+    background:
+        var(--cream-2);
+
+    box-shadow:
+        0 18px 45px
+        rgba(78, 45, 25, .14);
+
+    opacity: 0;
+
+    transform:
+        translateY(65px)
+        scale(.94);
+
+    transition:
+        transform .25s ease,
+        box-shadow .4s ease;
+}
+
+
+.food-card.visible {
+    animation:
+        cardReveal
+        .85s
+        cubic-bezier(.22, 1, .36, 1)
+        forwards;
+}
+
+
+@keyframes cardReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(65px)
+            scale(.94);
+    }
+
+    70% {
+        opacity: 1;
+
+        transform:
+            translateY(-5px)
+            scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+.food-card-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    animation:
+        idleFloat
+        var(--idle-speed)
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--idle-delay);
+}
+
+
+@keyframes idleFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-5px)
+            scale(1.005);
+    }
+
+}
+
+
+.food-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    transform:
+        scale(1.01);
+
+    transition:
+        transform .75s
+        cubic-bezier(.2, .7, .2, 1),
+        filter .4s ease;
+}
+
+
+.food-card:hover
+.food-image {
+    transform:
+        scale(1.075);
+
+    filter:
+        saturate(1.08)
+        brightness(1.035);
+}
+
+
+.food-card:hover {
+    box-shadow:
+        0 30px 65px
+        rgba(73, 42, 24, .23);
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+
+    background:
+        rgba(43, 25, 15, .84);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.lightbox-card {
+    width:
+        min(
+            1100px,
+            94vw
+        );
+
+    height:
+        min(
+            700px,
+            86vh
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        1.55fr
+        .75fr;
+
+    overflow: hidden;
+
+    border-radius:
+        34px;
+
+    background:
+        var(--cream);
+
+    box-shadow:
+        0 50px 100px
+        rgba(0, 0, 0, .3);
+
+    transform:
+        translateY(45px)
+        scale(.85);
+
+    transition:
+        transform
+        .55s
+        cubic-bezier(.22, 1, .36, 1);
+}
+
+
+.lightbox.active
+.lightbox-card {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* LARGE IMAGE */
+
+.lightbox-image-wrap {
+    min-width: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background:
+        var(--cream-2);
+}
+
+
+.lightbox-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+}
+
+
+/* RIGHT SIDE */
+
+.lightbox-info {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding:
+        55px
+        42px;
+}
+
+
+/* LOGO */
+
+.modal-logo {
+    display: block;
+
+    width:
+        min(
+            260px,
+            90%
+        );
+
+    max-height:
+        170px;
+
+    object-fit:
+        contain;
+
+    object-position:
+        left center;
+
+    margin-bottom:
+        8px;
+}
+
+
+.modal-line {
+    width: 68px;
+    height: 3px;
+
+    margin:
+        22px 0;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--orange);
+}
+
+
+.modal-text {
+    color:
+        rgba(63, 39, 26, .67);
+
+    font-size:
+        .95rem;
+
+    line-height:
+        1.8;
+}
+
+
+/* CLOSE */
+
+.close-button {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 47px;
+    height: 47px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        #f2dfc5;
+
+    color:
+        var(--brown-dark);
+
+    cursor: pointer;
+
+    font-size:
+        1.1rem;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.close-button:hover {
+    background:
+        var(--orange);
+
+    color:
+        white;
+
+    transform:
+        rotate(90deg);
+}
+
+
+/* PREVIOUS / NEXT */
+
+.modal-controls {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top:
+        34px;
+}
+
+
+.modal-controls button {
+    flex: 1;
+
+    min-height:
+        47px;
+
+    padding:
+        13px
+        10px;
+
+    border:
+        1px solid
+        rgba(63, 39, 26, .15);
+
+    border-radius:
+        13px;
+
+    background:
+        transparent;
+
+    color:
+        var(--brown-dark);
+
+    cursor:
+        pointer;
+
+    font-weight:
+        600;
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.modal-controls button:hover {
+    background:
+        var(--orange);
+
+    border-color:
+        var(--orange);
+
+    color:
+        white;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    margin-top:
+        100px;
+
+    padding-top:
+        45px;
+
+    border-top:
+        1px solid
+        rgba(63, 39, 26, .11);
+
+    text-align: center;
+
+    color:
+        rgba(63, 39, 26, .58);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-style:
+        italic;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .food-grid {
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+    }
+
+
+    .food-card {
+        height:
+            350px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .return-button {
+        top:
+            18px;
+
+        left:
+            18px;
+
+        min-height:
+            43px;
+
+        padding:
+            10px
+            16px;
+
+        font-size:
+            .78rem;
+    }
+
+
+    .page {
+        padding:
+            45px
+            20px
+            70px;
+    }
+
+
+    .hero {
+        min-height:
+            330px;
+
+        padding:
+            75px 0
+            50px;
+    }
+
+
+    .hero h1 {
+        letter-spacing:
+            -2px;
+    }
+
+
+    .food-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap:
+            15px;
+    }
+
+
+    .food-card {
+        height:
+            330px;
+    }
+
+
+    .lightbox {
+        padding:
+            15px;
+    }
+
+
+    .lightbox-card {
+        width:
+            min(
+                650px,
+                100%
+            );
+
+        height:
+            92vh;
+
+        grid-template-columns:
+            1fr;
+
+        grid-template-rows:
+            minmax(0, 58%)
+            minmax(0, 42%);
+
+        border-radius:
+            28px;
+    }
+
+
+    .lightbox-info {
+        padding:
+            24px
+            28px;
+    }
+
+
+    .modal-logo {
+        width:
+            min(
+                190px,
+                68%
+            );
+
+        max-height:
+            85px;
+    }
+
+
+    .modal-line {
+        margin:
+            12px 0;
+    }
+
+
+    .modal-text {
+        font-size:
+            .88rem;
+
+        line-height:
+            1.5;
+    }
+
+
+    .modal-controls {
+        margin-top:
+            15px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    body {
+        background:
+            linear-gradient(
+                145deg,
+                #fffaf3,
+                #f8e5cd
+            );
+    }
+
+
+    /* MOBILE RETURN BUTTON */
+
+    .return-button {
+        top:
+            calc(
+                12px +
+                env(safe-area-inset-top)
+            );
+
+        left:
+            12px;
+
+        min-width:
+            44px;
+
+        min-height:
+            44px;
+
+        padding:
+            9px
+            13px;
+
+        gap:
+            7px;
+
+        border-radius:
+            16px;
+
+        font-size:
+            .72rem;
+
+        box-shadow:
+            0 8px 22px
+            rgba(78, 45, 25, .13);
+    }
+
+
+    .return-arrow {
+        font-size:
+            1.1rem;
+    }
+
+
+    .page {
+        width: 100%;
+
+        padding:
+            30px
+            14px
+            55px;
+    }
+
+
+    .hero {
+        min-height:
+            auto;
+
+        padding:
+            90px
+            2px
+            55px;
+    }
+
+
+    .eyebrow {
+        max-width:
+            100%;
+
+        margin-bottom:
+            18px;
+
+        padding:
+            8px
+            13px;
+
+        font-size:
+            .62rem;
+
+        letter-spacing:
+            1.3px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            clamp(
+                3rem,
+                16vw,
+                4.2rem
+            );
+
+        line-height:
+            .92;
+
+        letter-spacing:
+            -2.5px;
+    }
+
+
+    .hero p {
+        margin-top:
+            22px;
+
+        font-size:
+            .91rem;
+
+        line-height:
+            1.7;
+    }
+
+
+    .gallery-header {
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        margin-bottom:
+            18px;
+
+        padding-bottom:
+            15px;
+    }
+
+
+    .gallery-header h2 {
+        font-size:
+            1.7rem;
+    }
+
+
+    .gallery-count {
+        font-size:
+            .68rem;
+    }
+
+
+    /* ONE COLUMN MOBILE GALLERY */
+
+    .food-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            15px;
+    }
+
+
+    .food-card {
+        width:
+            100%;
+
+        height:
+            auto;
+
+        aspect-ratio:
+            4 / 3;
+
+        border-radius:
+            20px;
+    }
+
+
+    /* MOBILE POPUP */
+
+    .lightbox {
+        align-items:
+            center;
+
+        padding:
+            10px;
+    }
+
+
+    .lightbox-card {
+        width:
+            100%;
+
+        max-height:
+            calc(
+                100dvh -
+                20px
+            );
+
+        height:
+            auto;
+
+        grid-template-columns:
+            1fr;
+
+        grid-template-rows:
+            auto
+            auto;
+
+        border-radius:
+            22px;
+
+        overflow-y:
+            auto;
+    }
+
+
+    .lightbox-image-wrap {
+        width:
+            100%;
+
+        height:
+            auto;
+
+        aspect-ratio:
+            4 / 3;
+    }
+
+
+    .lightbox-image {
+        width:
+            100%;
+
+        height:
+            100%;
+
+        object-fit:
+            cover;
+    }
+
+
+    .lightbox-info {
+        padding:
+            25px
+            20px
+            20px;
+    }
+
+
+    .close-button {
+        top:
+            10px;
+
+        right:
+            10px;
+
+        width:
+            40px;
+
+        height:
+            40px;
+
+        font-size:
+            .95rem;
+
+        box-shadow:
+            0 5px 15px
+            rgba(0, 0, 0, .08);
+    }
+
+
+    .modal-logo {
+        width:
+            min(
+                180px,
+                65%
+            );
+
+        max-height:
+            75px;
+
+        margin-bottom:
+            4px;
+    }
+
+
+    .modal-line {
+        width:
+            55px;
+
+        margin:
+            11px 0;
+    }
+
+
+    .modal-text {
+        font-size:
+            .86rem;
+
+        line-height:
+            1.5;
+
+        padding-right:
+            5px;
+    }
+
+
+    .modal-controls {
+        width:
+            100%;
+
+        gap:
+            8px;
+
+        margin-top:
+            17px;
+    }
+
+
+    .modal-controls button {
+        min-height:
+            44px;
+
+        padding:
+            10px
+            7px;
+
+        font-size:
+            .75rem;
+    }
+
+
+    .footer {
+        margin-top:
+            60px;
+
+        padding-top:
+            30px;
+
+        font-size:
+            .9rem;
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .return-button {
+        min-width:
+            42px;
+
+        min-height:
+            42px;
+
+        padding:
+            8px
+            11px;
+
+        font-size:
+            .68rem;
+    }
+
+
+    .hero {
+        padding-top:
+            85px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            2.9rem;
+    }
+
+
+    .eyebrow {
+        font-size:
+            .56rem;
+
+        letter-spacing:
+            1px;
+    }
+
+
+    .gallery-header h2 {
+        font-size:
+            1.5rem;
+    }
+
+
+    .food-card {
+        aspect-ratio:
+            1 / 1;
+    }
+
+
+    .modal-controls button {
+        font-size:
+            .7rem;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     RETURN TO HOME
+========================================================= -->
+
+<a
+    href="home.html"
+    class="return-button"
+    aria-label="Return to Home">
+
+    <span class="return-arrow">
+        ←
+    </span>
+
+    <span class="return-text">
+        Return
+    </span>
+
+</a>
+
+
+
+<!-- =========================================================
+     PAGE TRANSITION
+========================================================= -->
+
+<div
+    class="page-transition"
+    id="pageTransition">
+
+    <div class="transition-strip strip-1"></div>
+    <div class="transition-strip strip-2"></div>
+    <div class="transition-strip strip-3"></div>
+    <div class="transition-strip strip-4"></div>
+    <div class="transition-strip strip-5"></div>
+    <div class="transition-strip strip-6"></div>
+
+    <div class="transition-center">
+
+        <div class="transition-symbol"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="background">
+
+    <div class="pattern"></div>
+
+    <div class="glow glow-one"></div>
+
+    <div class="glow glow-two"></div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
+
+<main class="page">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-inner">
+
+
+            <div class="eyebrow">
+
+                Kusinang Gamay's Food Collection
+
+            </div>
+
+
+            <h1>
+
+                Gallery of
+
+                <span>
+                    Cravings.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Discover the flavors of Kusinang Gamay —
+                a delicious collection of comforting favorites,
+                colorful dishes, sweet treats, savory seafood,
+                and satisfying meals made to bring everyone
+                together around the table.
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- GALLERY -->
+
+    <section>
+
+
+        <div class="gallery-header">
+
+
+            <h2>
+                Food Gallery
+            </h2>
+
+
+            <div
+                class="gallery-count"
+                id="galleryCount">
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="food-grid"
+            id="foodGrid">
+        </div>
+
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Masarap kapag pinagsasaluhan.
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
+
+<div
+    class="lightbox"
+    id="lightbox">
+
+
+    <div class="lightbox-card">
+
+
+        <!-- FOOD IMAGE -->
+
+        <div class="lightbox-image-wrap">
+
+            <img
+                class="lightbox-image"
+                id="lightboxImage"
+                alt="Kusinang Gamay Food">
+
+        </div>
+
+
+
+        <!-- INFO -->
+
+        <div class="lightbox-info">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                class="close-button"
+                id="closeButton"
+                aria-label="Close">
+
+                ✕
+
+            </button>
+
+
+
+            <!-- KUSINANG GAMAY LOGO -->
+
+            <img
+                src="assets/KusinangGamay.png"
+                class="modal-logo"
+                alt="Kusinang Gamay">
+
+
+
+            <div class="modal-line"></div>
+
+
+
+            <p class="modal-text">
+
+                Discover comforting flavors and familiar Filipino
+                favorites made to be enjoyed together.
+
+            </p>
+
+
+
+            <!-- CONTROLS -->
+
+            <div class="modal-controls">
+
+
+                <button id="previousButton">
+
+                    ← Previous
+
+                </button>
+
+
+                <button id="nextButton">
+
+                    Next →
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   FOOD IMAGE DIRECTORY
+
+   C:\Website\assets\foods
+========================================================= */
+
+const FOOD_FOLDER =
+    "assets/foods/";
+
+
+
+/* =========================================================
+   FOOD FILE NAMES
+========================================================= */
+
+const foods = [
+
+    "afritada",
+    "Carbonara",
+    "chicken",
+    "chicken2",
+    "chicken3",
+    "chopsuey",
+    "curry",
+    "fishfillet",
+    "kakanin",
+    "lumpia",
+    "Putocheese",
+    "rings",
+    "salad",
+    "seafood",
+    "seafood2",
+    "seafood3",
+    "seafood4",
+    "seafood5",
+    "seafood6",
+    "seafood7",
+    "spag",
+    "ube"
+
+];
+
+
+
+/* =========================================================
+   EXTENSIONS
+========================================================= */
+
+const extensions = [
+
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+
+    ".JPG",
+    ".JPEG",
+    ".PNG",
+    ".WEBP"
+
+];
+
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const grid =
+    document.getElementById(
+        "foodGrid"
+    );
+
+
+const galleryCount =
+    document.getElementById(
+        "galleryCount"
+    );
+
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+
+const closeButton =
+    document.getElementById(
+        "closeButton"
+    );
+
+
+const previousButton =
+    document.getElementById(
+        "previousButton"
+    );
+
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+
+let activeFood = 0;
+
+
+
+/* =========================================================
+   IMAGE LOADER
+========================================================= */
+
+function loadFoodImage(
+    imageElement,
+    fileName
+) {
+
+    let extensionIndex =
+        0;
+
+
+    imageElement.style.display =
+        "block";
+
+
+    function tryImage() {
+
+
+        imageElement.src =
+
+            FOOD_FOLDER +
+            fileName +
+            extensions[
+                extensionIndex
+            ];
+
+
+    }
+
+
+    imageElement.onerror =
+        function () {
+
+
+            extensionIndex++;
+
+
+            if (
+                extensionIndex <
+                extensions.length
+            ) {
+
+
+                tryImage();
+
+
+            } else {
+
+
+                imageElement.onerror =
+                    null;
+
+
+                imageElement.style.display =
+                    "none";
+
+
+                console.warn(
+                    "Image not found:",
+                    fileName
+                );
+
+
+            }
+
+
+        };
+
+
+    tryImage();
+
+}
+
+
+
+/* =========================================================
+   CREATE IMAGE-ONLY GALLERY
+========================================================= */
+
+foods.forEach(
+
+    (
+        food,
+        index
+    ) => {
+
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "food-card";
+
+
+        const idleSpeed =
+
+            5.2 +
+            (
+                index % 5
+            )
+            *
+            .45;
+
+
+        const idleDelay =
+
+            -(
+                index *
+                .27
+            );
+
+
+        card.style.setProperty(
+
+            "--idle-speed",
+
+            `${idleSpeed}s`
+
+        );
+
+
+        card.style.setProperty(
+
+            "--idle-delay",
+
+            `${idleDelay}s`
+
+        );
+
+
+        /* IMAGE ONLY */
+
+        card.innerHTML = `
+
+            <div class="food-card-inner">
+
+                <img
+                    class="food-image"
+                    loading="lazy"
+                    alt="Kusinang Gamay Food">
+
+            </div>
+
+        `;
+
+
+        const image =
+
+            card.querySelector(
+                ".food-image"
+            );
+
+
+        loadFoodImage(
+            image,
+            food
+        );
+
+
+        card.addEventListener(
+
+            "click",
+
+            () => {
+
+
+                openFood(
+                    index
+                );
+
+
+            }
+
+        );
+
+
+        grid.appendChild(
+            card
+        );
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   IMAGE COUNT
+========================================================= */
+
+galleryCount.textContent =
+
+    `${foods.length} images`;
+
+
+
+/* =========================================================
+   REMOVE TRANSITION
+========================================================= */
+
+window.addEventListener(
+
+    "load",
+
+    () => {
+
+
+        setTimeout(
+
+            () => {
+
+
+                const transition =
+
+                    document.getElementById(
+                        "pageTransition"
+                    );
+
+
+                if (transition) {
+
+                    transition.remove();
+
+                }
+
+
+            },
+
+            2100
+
+        );
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const cards =
+
+    document.querySelectorAll(
+        ".food-card"
+    );
+
+
+const observer =
+
+    new IntersectionObserver(
+
+        entries => {
+
+
+            entries.forEach(
+
+                entry => {
+
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+
+                        const card =
+                            entry.target;
+
+
+                        const index =
+
+                            Array.from(
+                                cards
+                            )
+                            .indexOf(
+                                card
+                            );
+
+
+                        const delay =
+
+                            (
+                                index % 4
+                            )
+                            *
+                            100;
+
+
+                        setTimeout(
+
+                            () => {
+
+
+                                card
+                                    .classList
+                                    .add(
+                                        "visible"
+                                    );
+
+
+                            },
+
+                            delay
+
+                        );
+
+
+                        observer.unobserve(
+                            card
+                        );
+
+
+                    }
+
+
+                }
+
+            );
+
+
+        },
+
+        {
+            threshold: .1
+        }
+
+    );
+
+
+cards.forEach(
+
+    card => {
+
+
+        observer.observe(
+            card
+        );
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   DESKTOP 3D HOVER
+========================================================= */
+
+if (
+
+    window.matchMedia(
+        "(hover: hover)"
+    ).matches
+
+) {
+
+
+    cards.forEach(
+
+        card => {
+
+
+            card.addEventListener(
+
+                "mousemove",
+
+                event => {
+
+
+                    const rect =
+
+                        card
+                        .getBoundingClientRect();
+
+
+                    const x =
+
+                        event.clientX -
+                        rect.left;
+
+
+                    const y =
+
+                        event.clientY -
+                        rect.top;
+
+
+                    const centerX =
+
+                        rect.width / 2;
+
+
+                    const centerY =
+
+                        rect.height / 2;
+
+
+                    const rotateY =
+
+                        (
+                            x -
+                            centerX
+                        )
+                        /
+                        40;
+
+
+                    const rotateX =
+
+                        (
+                            centerY -
+                            y
+                        )
+                        /
+                        40;
+
+
+                    card.style.transform = `
+
+                        perspective(1000px)
+
+                        rotateX(${rotateX}deg)
+
+                        rotateY(${rotateY}deg)
+
+                        translateY(-7px)
+
+                    `;
+
+
+                    card.style.boxShadow =
+
+                        `
+                        0 30px 65px
+                        rgba(73,42,24,.23)
+                        `;
+
+
+                }
+
+            );
+
+
+            card.addEventListener(
+
+                "mouseleave",
+
+                () => {
+
+
+                    card.style.transform =
+                        "";
+
+
+                    card.style.boxShadow =
+                        "";
+
+
+                }
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+/* =========================================================
+   OPEN FOOD
+========================================================= */
+
+function openFood(
+    index
+) {
+
+
+    activeFood =
+        index;
+
+
+    const food =
+
+        foods[
+            activeFood
+        ];
+
+
+    loadFoodImage(
+
+        lightboxImage,
+
+        food
+
+    );
+
+
+    lightbox
+        .classList
+        .add(
+            "active"
+        );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+}
+
+
+
+/* =========================================================
+   CLOSE FOOD
+========================================================= */
+
+function closeFood() {
+
+
+    lightbox
+        .classList
+        .remove(
+            "active"
+        );
+
+
+    document.body.style.overflow =
+        "";
+
+
+}
+
+
+closeButton.addEventListener(
+
+    "click",
+
+    closeFood
+
+);
+
+
+
+/* CLICK OUTSIDE */
+
+lightbox.addEventListener(
+
+    "click",
+
+    event => {
+
+
+        if (
+            event.target ===
+            lightbox
+        ) {
+
+
+            closeFood();
+
+
+        }
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextFood() {
+
+
+    activeFood++;
+
+
+    if (
+        activeFood >=
+        foods.length
+    ) {
+
+
+        activeFood =
+            0;
+
+
+    }
+
+
+    openFood(
+        activeFood
+    );
+
+
+}
+
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousFood() {
+
+
+    activeFood--;
+
+
+    if (
+        activeFood < 0
+    ) {
+
+
+        activeFood =
+            foods.length - 1;
+
+
+    }
+
+
+    openFood(
+        activeFood
+    );
+
+
+}
+
+
+
+nextButton.addEventListener(
+
+    "click",
+
+    nextFood
+
+);
+
+
+previousButton.addEventListener(
+
+    "click",
+
+    previousFood
+
+);
+
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+
+    "keydown",
+
+    event => {
+
+
+        if (
+
+            !lightbox
+                .classList
+                .contains(
+                    "active"
+                )
+
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+
+            closeFood();
+
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowRight"
+        ) {
+
+
+            nextFood();
+
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowLeft"
+        ) {
+
+
+            previousFood();
+
+
+        }
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   MOBILE SWIPE SUPPORT
+========================================================= */
+
+let touchStartX =
+    0;
+
+
+let touchEndX =
+    0;
+
+
+lightbox.addEventListener(
+
+    "touchstart",
+
+    event => {
+
+
+        touchStartX =
+
+            event
+                .changedTouches[0]
+                .screenX;
+
+
+    },
+
+    {
+        passive: true
+    }
+
+);
+
+
+lightbox.addEventListener(
+
+    "touchend",
+
+    event => {
+
+
+        touchEndX =
+
+            event
+                .changedTouches[0]
+                .screenX;
+
+
+        const difference =
+
+            touchStartX -
+            touchEndX;
+
+
+        /* SWIPE LEFT */
+
+        if (
+            difference > 60
+        ) {
+
+
+            nextFood();
+
+
+        }
+
+
+        /* SWIPE RIGHT */
+
+        if (
+            difference < -60
+        ) {
+
+
+            previousFood();
+
+
+        }
+
+
+    },
+
+    {
+        passive: true
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
