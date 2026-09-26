@@ -1,616 +1,3247 @@
 <!DOCTYPE html>
+
+
+
 <html lang="en">
+
+
+
 <head>
+
+
+
   <meta charset="UTF-8">
+
+
+
   <link rel="icon" type="image/png" href="assets/KusinangGamayIcon.png">
+
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
+
+
+
+
   <style>* {
+
+
+
         margin: 0;
+
+
+
         padding: 0;
+
+
+
         box-sizing: border-box;
+
+
+
     }
+
+
+
+
+
+
 
     .sticky-header {
+
+
+
         position: sticky;
+
+
+
         top: 0;
+
+
+
         width: 100%;
+
+
+
         z-index: 9999;
 
+
+
+
+
+
+
         background: #ffffff;
+
+
+
         border-bottom: 1px solid rgba(103, 45, 10, 0.12);
+
+
+
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+
+
     }
+
+
+
+
+
+
 
     .header-container {
+
+
+
         max-width: 1300px;
+
+
+
         height: 90px;
+
+
+
         margin: 0 auto;
+
+
+
         padding: 0 35px;
 
+
+
+
+
+
+
         display: flex;
+
+
+
         align-items: center;
+
+
+
         justify-content: space-between;
+
+
+
     }
+
+
+
+
+
+
 
     .header-logo {
+
+
+
         display: flex;
+
+
+
         align-items: center;
+
+
+
         text-decoration: none;
+
+
+
     }
+
+
+
+
+
+
 
     .header-logo img {
+
+
+
         width: auto;
+
+
+
         height: 70px;
+
+
+
         display: block;
+
+
+
         object-fit: contain;
+
+
+
     }
+
+
+
+
+
+
 
     .header-nav {
+
+
+
         display: flex;
+
+
+
         align-items: center;
+
+
+
         gap: 8px;
+
+
+
     }
 
+
+
+
+
+
+
     .header-nav a {
+
+
+
         position: relative;
+
+
+
         text-decoration: none;
+
+
+
+
+
+
 
         color: #6b2d0b;
 
+
+
+
+
+
+
         font-family: Arial, Helvetica, sans-serif;
+
+
+
         font-size: 14px;
+
+
+
         font-weight: 700;
+
+
+
+
+
+
 
         padding: 11px 16px;
 
+
+
+
+
+
+
         border-radius: 30px;
 
+
+
+
+
+
+
         transition:
+
+
+
             background 0.25s ease,
+
+
+
             color 0.25s ease,
+
+
+
             transform 0.25s ease;
+
+
+
     }
+
+
+
+
+
+
 
     .header-nav a:hover {
+
+
+
         background: #ff6500;
+
+
+
         color: #ffffff;
+
+
+
         transform: translateY(-2px);
+
+
+
     }
+
+
+
+
+
+
 
     /* Highlight Menu */
+
+
+
         @media (max-width: 900px) {
+
+
+
         .header-container {
+
+
+
             padding: 0 20px;
+
+
+
         }
+
+
+
+
+
+
 
         .header-logo img {
+
+
+
             height: 58px;
+
+
+
         }
+
+
+
+
+
+
 
         .header-nav {
+
+
+
             gap: 2px;
+
+
+
         }
 
+
+
+
+
+
+
         .header-nav a {
+
+
+
             font-size: 12px;
+
+
+
             padding: 9px 10px;
+
+
+
         }
+
+
+
     }
+
+
+
+
+
+
 
     @media (max-width: 650px) {
+
+
+
         .header-container {
+
+
+
             height: auto;
+
+
+
             min-height: 80px;
+
+
+
             padding: 10px 15px;
 
+
+
+
+
+
+
             flex-direction: column;
+
+
+
             justify-content: center;
+
+
+
             gap: 8px;
+
+
+
         }
+
+
+
+
+
+
 
         .header-logo img {
+
+
+
             height: 50px;
+
+
+
         }
+
+
+
+
+
+
 
         .header-nav {
+
+
+
             width: 100%;
+
+
+
             justify-content: center;
+
+
+
             flex-wrap: wrap;
+
+
+
             gap: 3px;
+
+
+
         }
+
+
+
+
+
+
 
         .header-nav a {
+
+
+
             font-size: 11px;
+
+
+
             padding: 7px 10px;
+
+
+
         }
+
+
+
     }
+
+
+
 </style>
+<title>Kusinang Gamay by M&D</title>
 
 
-<header class="sticky-header">
-
-    <div class="header-container">
-
-        <!-- LOGO -->
-        <a href="index.html" class="header-logo">
-            <img
-                src="assets/KusinangGamay.png"
-                alt="Kusinang Gamay"
-            >
-        </a>
 
 
-        <!-- NAVIGATION -->
-        <nav class="header-nav">
 
-            <a href="home.html">
-                HOME
-            </a>
 
-            <a href="about.html">
-                ABOUT US
-            </a>
-
-            <a href="menu.html">
-                MENU
-            </a>
-
-            <a href="contact.html">
-                CONTACT US
-            </a>
-
-            <a href="location.html">
-                LOCATION
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-  <title>Kusinang Gamay by M&D</title>
 
   <style>
+
+
+
     :root{
+
+
+
       --brown:#6f330f;
+
+
+
       --deep:#351608;
+
+
+
       --orange:#ff6815;
+
+
+
       --orange2:#ff8b35;
+
+
+
       --paper:#fffaf0;
+
+
+
     }
+
+
+
+
+
+
 
     *{
+
+
+
       box-sizing:border-box;
+
+
+
     }
+
+
+
+
+
+
 
     html{
+
+
+
       scroll-behavior:smooth;
+
+
+
     }
+
+
+
+
+
+
 
     body{
+
+
+
       margin:0;
+
+
+
       background:var(--paper);
+
+
+
       color:var(--deep);
+
+
+
       font-family:Arial, Helvetica, sans-serif;
+
+
+
       overflow-x:hidden;
+
+
+
     }
+
+
+
+
+
+
 
     .hero{
+
+
+
       position:relative;
+
+
+
       min-height:100vh;
+
+
+
       display:flex;
+
+
+
       align-items:center;
+
+
+
       overflow:hidden;
 
+
+
+
+
+
+
       background:
+
+
+
         radial-gradient(
+
+
+
           circle at 72% 45%,
+
+
+
           rgba(255,104,21,.18),
+
+
+
           transparent 30%
+
+
+
         ),
+
+
+
         linear-gradient(
+
+
+
           120deg,
+
+
+
           #fffaf0 0%,
+
+
+
           #fff4dd 55%,
+
+
+
           #f8dfbc 100%
+
+
+
         );
+
+
+
     }
 
+
+
+
+
+
+
     .hero::before{
+
+
+
       content:"";
+
+
+
       position:absolute;
+
+
+
       inset:0;
+
+
+
       opacity:.13;
 
+
+
+
+
+
+
       background-image:
+
+
+
         radial-gradient(
+
+
+
           rgba(111,51,15,.75) 1px,
+
+
+
           transparent 1px
+
+
+
         );
+
+
+
+
+
+
 
       background-size:30px 30px;
 
+
+
+
+
+
+
       mask-image:
+
+
+
         linear-gradient(
+
+
+
           90deg,
+
+
+
           black,
+
+
+
           transparent 75%
+
+
+
         );
+
+
+
     }
+
+
+
+
+
+
 
     .hero-inner{
+
+
+
       position:relative;
+
+
+
       z-index:2;
+
+
+
+
+
+
 
       width:min(1180px,92vw);
+
+
+
       margin:auto;
 
+
+
+
+
+
+
       display:grid;
+
+
+
       grid-template-columns:1.03fr .97fr;
+
+
+
       align-items:center;
+
+
+
+
+
+
 
       gap:48px;
+
+
+
       padding:70px 0;
+
+
+
     }
+
+
+
+
+
+
 
     .hero-copy{
+
+
+
       position:relative;
+
+
+
       z-index:2;
+
+
+
     }
 
+
+
+
+
+
+
     .eyebrow{
+
+
+
       display:inline-flex;
+
+
+
       align-items:center;
+
+
+
       gap:10px;
+
+
+
+
+
+
 
       padding:9px 15px;
 
+
+
+
+
+
+
       background:#fff;
+
+
+
       border:1px solid rgba(111,51,15,.12);
+
+
+
       border-radius:100px;
 
+
+
+
+
+
+
       font-size:12px;
+
+
+
       font-weight:900;
 
+
+
+
+
+
+
       letter-spacing:.1em;
+
+
+
       text-transform:uppercase;
+
+
+
+
+
+
 
       color:var(--brown);
 
+
+
+
+
+
+
       box-shadow:
+
+
+
         0 8px 25px rgba(77,31,7,.06);
+
+
+
     }
+
+
+
+
+
+
 
     .eyebrow-dot{
+
+
+
       width:8px;
+
+
+
       height:8px;
+
+
+
       border-radius:50%;
+
+
+
       background:var(--orange);
 
+
+
+
+
+
+
       box-shadow:
+
+
+
         0 0 0 5px rgba(255,104,21,.12);
+
+
+
     }
+
+
+
+
+
+
 
     h1{
+
+
+
       margin:24px 2px 24px;
 
+
+
+
+
+
+
       font-family:
+
+
+
         Georgia,
+
+
+
         "Times New Roman",
+
+
+
         serif;
 
+
+
+
+
+
+
       font-size:
+
+
+
         clamp(52px,6.3vw,90px);
 
+
+
+
+
+
+
       line-height:.95;
+
+
+
       letter-spacing:-.045em;
 
+
+
+
+
+
+
       color:var(--deep);
+
+
+
     }
+
+
+
+
+
+
 
     h1 span{
+
+
+
       color:var(--orange);
+
+
+
       font-style:italic;
+
+
+
     }
 
+
+
+
+
+
+
     .hero-description{
+
+
+
       max-width:610px;
+
+
+
+
+
+
 
       margin:0 0 32px;
 
+
+
+
+
+
+
       font-size:
+
+
+
         clamp(16px,1.5vw,20px);
+
+
+
+
+
+
 
       line-height:1.75;
 
+
+
+
+
+
+
       color:
+
+
+
         rgba(53,22,8,.72);
+
+
+
     }
+
+
+
+
+
+
 
     .hero-actions{
+
+
+
       display:flex;
+
+
+
       flex-wrap:wrap;
+
+
+
       gap:14px;
+
+
+
     }
 
+
+
+
+
+
+
     .btn{
+
+
+
       min-height:52px;
 
+
+
+
+
+
+
       display:inline-flex;
+
+
+
       align-items:center;
+
+
+
       justify-content:center;
+
+
+
+
+
+
 
       padding:0 23px;
 
+
+
+
+
+
+
       border-radius:100px;
 
+
+
+
+
+
+
       text-decoration:none;
+
+
+
       font-weight:900;
 
+
+
+
+
+
+
       transition:
+
+
+
         transform .25s ease,
+
+
+
         box-shadow .25s ease;
+
+
+
     }
 
+
+
+
+
+
+
     .btn-primary{
+
+
+
       background:
+
+
+
         linear-gradient(
+
+
+
           135deg,
+
+
+
           var(--orange),
+
+
+
           var(--orange2)
+
+
+
         );
+
+
+
+
+
+
 
       color:#fff;
 
+
+
+
+
+
+
       box-shadow:
+
+
+
         0 14px 28px
+
+
+
         rgba(255,104,21,.25);
+
+
+
     }
+
+
+
+
+
+
 
     .btn-primary:hover{
+
+
+
       transform:translateY(-3px);
 
+
+
+
+
+
+
       box-shadow:
+
+
+
         0 18px 34px
+
+
+
         rgba(255,104,21,.32);
+
+
+
     }
+
+
+
+
+
+
 
     .btn-secondary{
+
+
+
       background:#fff;
+
+
+
       color:var(--brown);
 
+
+
+
+
+
+
       border:
+
+
+
         1px solid rgba(111,51,15,.13);
+
+
+
     }
+
+
+
+
+
+
 
     .btn-secondary:hover{
+
+
+
       transform:translateY(-3px);
 
+
+
+
+
+
+
       box-shadow:
+
+
+
         0 12px 28px
+
+
+
         rgba(74,29,8,.10);
+
+
+
     }
 
+
+
+
+
+
+
     .food-stage{
+
+
+
       position:relative;
+
+
+
+
+
+
 
       min-height:590px;
 
+
+
+
+
+
+
       display:flex;
+
+
+
       align-items:center;
+
+
+
       justify-content:center;
 
+
+
+
+
+
+
       isolation:isolate;
+
+
+
     }
 
+
+
+
+
+
+
     .image-glow{
+
+
+
       position:absolute;
+
+
+
       z-index:-1;
 
+
+
+
+
+
+
       width:500px;
+
+
+
       height:500px;
+
+
+
+
+
+
 
       border-radius:50%;
 
+
+
+
+
+
+
       background:
+
+
+
         radial-gradient(
+
+
+
           circle,
+
+
+
           rgba(255,104,21,.25),
+
+
+
           rgba(255,104,21,.08) 45%,
+
+
+
           transparent 70%
+
+
+
         );
 
+
+
+
+
+
+
       filter:blur(12px);
+
+
+
     }
-    
+
+
+
+
+
+
+
+
+
+
 
     .brand-image{
+
+
+
       display:block;
 
+
+
+
+
+
+
       width:min(580px,100%);
+
+
+
       height:auto;
+
+
+
+
+
+
 
       object-fit:contain;
 
+
+
+
+
+
+
       filter:
+
+
+
         drop-shadow(
+
+
+
           0 28px 34px
+
+
+
           rgba(91,40,11,.18)
+
+
+
         );
+
+
+
+
+
+
 
       animation:
+
+
+
         floatingLogo
+
+
+
         5s ease-in-out
+
+
+
         infinite;
 
+
+
+
+
+
+
       transition:
+
+
+
         transform .35s ease,
+
+
+
         filter .35s ease;
+
+
+
     }
+
+
+
+
+
+
 
     .brand-image:hover{
+
+
+
       transform:scale(1.035);
 
+
+
+
+
+
+
       filter:
+
+
+
         drop-shadow(
+
+
+
           0 34px 40px
+
+
+
           rgba(91,40,11,.26)
+
+
+
         );
+
+
+
     }
+
+
+
+
+
+
 
     @keyframes floatingLogo{
+
+
+
       0%,
+
+
+
       100%{
+
+
+
         transform:translateY(0);
+
+
+
       }
+
+
+
+
+
+
 
       50%{
+
+
+
         transform:translateY(-12px);
+
+
+
       }
+
+
+
     }
+
+
+
+
+
+
 
     @media(max-width:900px){
+
+
+
       .hero{
+
+
+
         min-height:auto;
+
+
+
       }
 
+
+
+
+
+
+
       .hero-inner{
+
+
+
         grid-template-columns:1fr;
+
+
+
         text-align:center;
 
+
+
+
+
+
+
         padding:
+
+
+
           65px 0 50px;
 
+
+
+
+
+
+
         gap:20px;
+
+
+
       }
+
+
+
+
+
+
 
       .eyebrow{
+
+
+
         margin:auto;
+
+
+
       }
+
+
+
+
+
+
 
       .hero-description{
+
+
+
         margin-left:auto;
+
+
+
         margin-right:auto;
+
+
+
       }
+
+
+
+
+
+
 
       .hero-actions{
+
+
+
         justify-content:center;
+
+
+
       }
+
+
+
+
+
+
 
       .food-stage{
+
+
+
         min-height:450px;
+
+
+
       }
+
+
+
+
+
+
 
       .brand-image{
+
+
+
         width:min(500px,88vw);
+
+
+
       }
 
+
+
+
+
+
+
       .image-glow{
+
+
+
         width:400px;
+
+
+
         height:400px;
+
+
+
       }
+
+
+
     }
+
+
+
+
+
+
 
     @media(max-width:620px){
+
+
+
       .hero-inner{
+
+
+
         width:min(92vw,500px);
 
+
+
+
+
+
+
         padding:
+
+
+
           48px 0 35px;
+
+
+
       }
+
+
+
+
+
+
 
       h1{
+
+
+
         font-size:
+
+
+
           clamp(48px,14vw,64px);
+
+
+
       }
+
+
+
+
+
+
 
       .hero-description{
+
+
+
         font-size:16px;
+
+
+
       }
+
+
+
+
+
+
 
       .hero-actions{
+
+
+
         width:100%;
+
+
+
         flex-direction:column;
+
+
+
       }
+
+
+
+
+
+
 
       .btn{
+
+
+
         width:100%;
+
+
+
       }
+
+
+
+
+
+
 
       .food-stage{
+
+
+
         min-height:330px;
+
+
+
         margin-top:10px;
+
+
+
       }
+
+
+
+
+
+
 
       .brand-image{
+
+
+
         width:min(400px,96vw);
+
+
+
       }
 
+
+
+
+
+
+
       .image-glow{
+
+
+
         width:300px;
+
+
+
         height:300px;
+
+
+
       }
+
+
+
     }
+
+
+
   </style>
+
+
+
+
+
+
+
+  <!-- KUSINANG GAMAY INTRO TRANSITION - GRADIENT CIRCLE VERSION -->
+
+  <style>
+
+    .kg-intro {
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 999999;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      background: #fffaf0;
+
+    }
+
+
+
+    .kg-intro::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 50%;
+
+      width: 18vmax;
+
+      height: 18vmax;
+
+      border-radius: 50%;
+
+      background:
+
+        radial-gradient(
+
+          circle at 35% 30%,
+
+          #ffd6a1 0%,
+
+          #ff9a48 38%,
+
+          #ff6815 68%,
+
+          #6f330f 100%
+
+        );
+
+      transform: translate(-50%, -50%) scale(0);
+
+      animation: kgCircleExpand .55s cubic-bezier(.2,.75,.25,1) forwards;
+
+      box-shadow: 0 0 80px rgba(255, 104, 21, .28);
+
+    }
+
+
+
+    .kg-intro::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background: #fffaf0;
+
+      opacity: 0;
+
+      animation: kgIntroFade .22s ease .48s forwards;
+
+    }
+
+
+
+    .kg-intro--exit {
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition: opacity .18s ease, visibility .18s ease;
+
+    }
+
+
+
+    @keyframes kgCircleExpand {
+
+      0% {
+
+        transform: translate(-50%, -50%) scale(0);
+
+      }
+
+
+
+      70% {
+
+        transform: translate(-50%, -50%) scale(7.5);
+
+      }
+
+
+
+      100% {
+
+        transform: translate(-50%, -50%) scale(10);
+
+      }
+
+    }
+
+
+
+    @keyframes kgIntroFade {
+
+      to {
+
+        opacity: 1;
+
+      }
+
+    }
+
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .kg-intro::before,
+
+      .kg-intro::after {
+
+        animation: none !important;
+
+      }
+
+    }
+
+  </style>
+
+
+<style>
+
+  /* =========================================================
+     MOBILE SAFEGUARDS FOR THE EXISTING HOME/HERO
+     ========================================================= */
+  @media (max-width: 620px) {
+    body { overflow-x: hidden; }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+    }
+
+    .header-container {
+      width: 100%;
+      padding: 9px 12px;
+    }
+
+    .header-nav {
+      row-gap: 4px;
+    }
+
+    .header-nav a {
+      font-size: 10px;
+      padding: 7px 8px;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-inner {
+      width: min(92vw, 500px);
+      padding: 42px 0 32px;
+      gap: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 13vw, 60px);
+      line-height: .98;
+    }
+
+    .hero-description {
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .food-stage {
+      width: 100%;
+      min-height: 285px;
+    }
+
+    .brand-image {
+      width: min(360px, 94vw);
+      max-width: 100%;
+    }
+
+    .image-glow {
+      width: 270px;
+      height: 270px;
+      max-width: 85vw;
+      max-height: 85vw;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .header-logo img { height: 44px; }
+
+    .header-nav a {
+      font-size: 9px;
+      padding: 6px 7px;
+    }
+
+    .hero-inner { padding-top: 34px; }
+
+    h1 { font-size: clamp(38px, 12.5vw, 50px); }
+  }
+
+
+  /* =========================================================
+     SECOND SECTION — BOOK AN ORDER
+     ========================================================= */
+  .food-order-section {
+    width: 100%;
+    padding: 70px 20px;
+    background:
+      radial-gradient(circle at top left, rgba(255, 183, 77, 0.12), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(255, 87, 34, 0.10), transparent 35%),
+      linear-gradient(135deg, #17120f, #261a13 55%, #130f0c);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #ffffff;
+  }
+
+  .food-order-container {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    overflow: hidden;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 30px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.42),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .food-order-hero {
+    min-width: 0;
+    min-height: 580px;
+    padding: 65px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(13,10,8,0.97) 0%,
+        rgba(22,14,10,0.93) 50%,
+        rgba(22,14,10,0.74) 100%
+      );
+  }
+
+  .food-order-hero::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    right: -80px;
+    top: 75px;
+    background:
+      radial-gradient(
+        circle at 45% 40%,
+        #e6a64c 0%,
+        #bc6f2b 25%,
+        #6e3519 50%,
+        #2b1710 72%
+      );
+    opacity: 0.8;
+    box-shadow:
+      0 0 0 16px rgba(255,255,255,0.025),
+      0 30px 55px rgba(0,0,0,0.4);
+  }
+
+  .food-order-hero::after {
+    content: "🍳";
+    position: absolute;
+    right: 60px;
+    top: 160px;
+    font-size: 110px;
+    transform: rotate(-12deg);
+    filter: drop-shadow(0 14px 18px rgba(0,0,0,0.45));
+  }
+
+  .food-order-tag {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    border-radius: 999px;
+    background: rgba(255,183,77,0.12);
+    border: 1px solid rgba(255,183,77,0.22);
+    color: #ffc36d;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .food-order-title {
+    max-width: 590px;
+    margin: 0 0 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(44px, 5vw, 72px);
+    line-height: 1;
+    letter-spacing: -3px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .food-order-title span { color: #ffb347; }
+
+  .food-order-description {
+    max-width: 530px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.68);
+    position: relative;
+    z-index: 2;
+  }
+
+  .food-order-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .food-order-feature {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    color: rgba(255,255,255,0.82);
+    font-size: 13px;
+  }
+
+  .food-order-feature span { font-size: 18px; }
+
+  .food-order-booking {
+    min-width: 0;
+    padding: 55px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,0.075),
+        rgba(255,255,255,0.025)
+      );
+  }
+
+  .food-order-booking small {
+    color: #ffb347;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  .food-order-booking h2 {
+    margin: 8px 0 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
+    color: #fff;
+  }
+
+  .food-order-booking-intro {
+    margin: 0 0 28px;
+    color: rgba(255,255,255,0.58);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .food-order-steps {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 28px;
+  }
+
+  .food-order-step {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 17px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.18);
+    transition: 0.25s ease;
+  }
+
+  .food-order-step:hover {
+    transform: translateX(5px);
+    border-color: rgba(255,179,71,0.28);
+    background: rgba(255,179,71,0.055);
+  }
+
+  .food-order-step-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ffbe62, #ed761e);
+    font-size: 23px;
+    box-shadow: 0 8px 20px rgba(237,118,30,0.18);
+  }
+
+  .food-order-step-text { min-width: 0; }
+
+  .food-order-step-text h3 {
+    margin: 0 0 4px;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .food-order-step-text p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.54);
+  }
+
+  .food-order-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 17px 22px;
+    border: 0;
+    border-radius: 17px;
+    text-decoration: none;
+    color: #16100d;
+    font-size: 16px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffd078, #ff9b38);
+    box-shadow: 0 14px 35px rgba(255,153,51,0.25);
+    transition: all 0.25s ease;
+  }
+
+  .food-order-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 45px rgba(255,153,51,0.38);
+  }
+
+  .food-order-btn svg { width: 23px; height: 23px; }
+
+  .food-order-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: rgba(255,255,255,0.48);
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .food-order-status-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #48d17a;
+    box-shadow: 0 0 10px rgba(72,209,122,0.7);
+    animation: foodOrderPulse 1.7s infinite;
+  }
+
+  @keyframes foodOrderPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .food-order-section { padding: 48px 18px; }
+
+    .food-order-container { grid-template-columns: 1fr; }
+
+    .food-order-hero {
+      min-height: 430px;
+      padding: 55px 40px;
+    }
+
+    .food-order-hero::before {
+      width: 230px;
+      height: 230px;
+      right: -75px;
+      top: 30px;
+    }
+
+    .food-order-hero::after {
+      font-size: 78px;
+      right: 32px;
+      top: 95px;
+      opacity: 0.65;
+    }
+
+    .food-order-title {
+      max-width: 520px;
+      font-size: clamp(42px, 9vw, 62px);
+    }
+
+    .food-order-description { max-width: 560px; }
+
+    .food-order-booking { padding: 45px 40px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 620px) {
+    .food-order-section { padding: 28px 12px; }
+
+    .food-order-container { border-radius: 22px; }
+
+    .food-order-hero {
+      min-height: auto;
+      padding: 38px 22px 34px;
+    }
+
+    .food-order-hero::before {
+      width: 180px;
+      height: 180px;
+      right: -92px;
+      top: 20px;
+      opacity: 0.55;
+    }
+
+    .food-order-hero::after {
+      font-size: 58px;
+      right: 18px;
+      top: 82px;
+      opacity: 0.38;
+    }
+
+    .food-order-tag {
+      font-size: 10px;
+      letter-spacing: .9px;
+      padding: 8px 11px;
+      margin-bottom: 19px;
+    }
+
+    .food-order-title {
+      max-width: 88%;
+      margin-bottom: 18px;
+      font-size: clamp(36px, 12vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+    }
+
+    .food-order-description {
+      max-width: 100%;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .food-order-features {
+      margin-top: 22px;
+      gap: 8px;
+    }
+
+    .food-order-feature {
+      padding: 9px 11px;
+      font-size: 11.5px;
+      border-radius: 12px;
+    }
+
+    .food-order-feature span { font-size: 16px; }
+
+    .food-order-booking { padding: 34px 20px; }
+
+    .food-order-booking h2 { font-size: 27px; }
+
+    .food-order-booking-intro {
+      margin-bottom: 22px;
+      font-size: 13px;
+    }
+
+    .food-order-steps {
+      gap: 11px;
+      margin-bottom: 22px;
+    }
+
+    .food-order-step {
+      gap: 12px;
+      padding: 14px;
+      border-radius: 15px;
+    }
+
+    .food-order-step:hover { transform: none; }
+
+    .food-order-step-icon {
+      width: 43px;
+      height: 43px;
+      flex-basis: 43px;
+      font-size: 20px;
+    }
+
+    .food-order-step-text h3 { font-size: 14px; }
+    .food-order-step-text p { font-size: 11.5px; }
+
+    .food-order-btn {
+      min-height: 54px;
+      padding: 15px 18px;
+      border-radius: 15px;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .food-order-hero { padding-left: 18px; padding-right: 18px; }
+    .food-order-title { max-width: 100%; }
+    .food-order-hero::after { display: none; }
+    .food-order-booking { padding-left: 16px; padding-right: 16px; }
+    .food-order-feature { width: 100%; }
+  }
+
+</style>
 </head>
+
+
+
+
+
+
 
 <body>
 
+  <header class="sticky-header">
+  
+  
+  
+  
+  
+  
+  
+      <div class="header-container">
+  
+  
+  
+  
+  
+  
+  
+          <!-- LOGO -->
+  
+  
+  
+          <a href="index.html" class="header-logo">
+  
+  
+  
+              <img
+  
+  
+  
+                  src="assets/KusinangGamay.png"
+  
+  
+  
+                  alt="Kusinang Gamay"
+  
+  
+  
+              >
+  
+  
+  
+          </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+          <!-- NAVIGATION -->
+  
+  
+  
+          <nav class="header-nav">
+  
+  
+  
+  
+  
+  
+  
+              <a href="home.html">
+  
+  
+  
+                  HOME
+  
+  
+  
+              </a>
+  
+  
+  
+  
+  
+  
+  
+              <a href="about.html">
+  
+  
+  
+                  ABOUT US
+  
+  
+  
+              </a>
+  
+  
+  
+  
+  
+  
+  
+              <a href="menu.html">
+  
+  
+  
+                  MENU
+  
+  
+  
+              </a>
+  
+  
+  
+  
+  
+  
+  
+              <a href="contact.html">
+  
+  
+  
+                  CONTACT US
+  
+  
+  
+              </a>
+  
+  
+  
+  
+  
+  
+  
+              <a href="location.html">
+  
+  
+  
+                  LOCATION
+  
+  
+  
+              </a>
+  
+  
+  
+  
+  
+  
+  
+          </nav>
+  
+  
+  
+  
+  
+  
+  
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  </header>
+
+
+
+
+
+
+
+
+  <!-- KUSINANG GAMAY INTRO TRANSITION - GRADIENT CIRCLE VERSION -->
+
+  <div class="kg-intro" id="kgIntro" aria-hidden="true"></div>
+
+
+
   <section class="hero">
 
+
+
+
+
+
+
     <div class="hero-inner">
-      
+
+
+
+
+
+
+
       <div class="hero-copy">
 
+
+
+
+
+
+
         <div class="eyebrow">
+
+
+
           <span class="eyebrow-dot"></span>
+
+
+
           Fresh from our kitchen
+
+
+
         </div>
 
+
+
+
+
+
+
         <h1>
+
+
+
           Good food feels
+
+
+
           <span>like home.</span>
+
+
+
         </h1>
 
+
+
+
+
+
+
         <p class="hero-description">
+
+
+
           Welcome to Kusinang Gamay by M&amp;D —
+
+
+
           a warm little kitchen serving familiar
+
+
+
           comfort food, generous plates, and the
+
+
+
           kind of flavors that make you want to
+
+
+
           stay for one more bite.
+
+
+
         </p>
+
+
+
+
+
+
 
         <div class="hero-actions">
 
+
+
+
+
+
+
           <a href="#favorites" class="btn btn-primary">
+
+
+
             See our favorites →
+
+
+
           </a>
 
+
+
+
+
+
+
           <a href="food-gallery.html" class="btn btn-secondary">
+
+
+
             Food Gallery
+
+
+
           </a>
+
+
+
+
+
+
 
         </div>
 
+
+
+
+
+
+
       </div>
+
+
+
+
+
+
 
       <div class="food-stage">
 
+
+
+
+
+
+
         <div class="image-glow"></div>
 
+
+
+
+
+
+
         <img
+
+
+
           src="assets/KusinanggamaywithMandD.png"
+
+
+
           alt="Kusinang Gamay by M&D"
+
+
+
           class="brand-image"
+
+
+
         >
+
+
+
+
+
+
 
       </div>
 
+
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
 
   </section>
 
+
+  <!-- =========================================================
+       SECOND SECTION — BOOK AN ORDER
+       ========================================================= -->
+  <section class="food-order-section" id="order">
+    <div class="food-order-container">
+
+      <div class="food-order-hero">
+        <div class="food-order-tag">🔥 Fresh from the kitchen</div>
+
+        <h2 class="food-order-title">
+          Your next meal is <span>calling.</span>
+        </h2>
+
+        <p class="food-order-description">
+          Craving something delicious? Send us your food order directly through Messenger.
+          Tell us what you want, your preferred pickup or delivery details, and we'll assist
+          you with your order.
+        </p>
+
+        <div class="food-order-features">
+          <div class="food-order-feature"><span>🍳</span> Freshly Prepared</div>
+          <div class="food-order-feature"><span>🥘</span> Made to Order</div>
+          <div class="food-order-feature"><span>💬</span> Direct Booking</div>
+        </div>
+      </div>
+
+      <div class="food-order-booking">
+        <small>Food Ordering</small>
+        <h2>Ready to order?</h2>
+
+        <p class="food-order-booking-intro">
+          Booking is easy. Click the button below and you'll be redirected to Messenger
+          where you can send your order directly to us.
+        </p>
+
+        <div class="food-order-steps">
+          <div class="food-order-step">
+            <div class="food-order-step-icon">🍽️</div>
+            <div class="food-order-step-text">
+              <h3>Choose your food</h3>
+              <p>Decide what you'd like to order from our menu.</p>
+            </div>
+          </div>
+
+          <div class="food-order-step">
+            <div class="food-order-step-icon">💬</div>
+            <div class="food-order-step-text">
+              <h3>Send your order</h3>
+              <p>Message us through Facebook Messenger.</p>
+            </div>
+          </div>
+
+          <div class="food-order-step">
+            <div class="food-order-step-icon">👨‍🍳</div>
+            <div class="food-order-step-text">
+              <h3>We prepare it</h3>
+              <p>We'll confirm your order and prepare it fresh.</p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://m.me/dee.oloya"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="food-order-btn"
+          aria-label="Book an order through Messenger"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path d="M12 2C6.477 2 2 6.145 2 11.26c0 2.915 1.454 5.514 3.727 7.211V22l3.405-1.87c.909.251 1.87.39 2.868.39 5.523 0 10-4.145 10-9.26S17.523 2 12 2zm.994 12.47-2.546-2.716-4.97 2.716 5.467-5.806 2.607 2.716 4.908-2.716-5.466 5.806z"/>
+          </svg>
+          Book an Order
+        </a>
+
+        <div class="food-order-status">
+          <div class="food-order-status-dot"></div>
+          Message us directly on Messenger
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- KUSINANG GAMAY INTRO TRANSITION SCRIPT - GRADIENT CIRCLE VERSION -->
+
+  <script>
+
+    (function () {
+
+      const intro = document.getElementById("kgIntro");
+
+      if (!intro) return;
+
+
+
+      window.setTimeout(function () {
+
+        intro.classList.add("kg-intro--exit");
+
+      }, 680);
+
+
+
+      window.setTimeout(function () {
+
+        if (intro && intro.parentNode) {
+
+          intro.parentNode.removeChild(intro);
+
+        }
+
+      }, 900);
+
+    })();
+
+  </script>
+
+
+
+
+
+
+
 </body>
+
+
+
 </html>
