@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kusinang Gamay | Location</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff9ef;
+            color: #4b210d;
+            overflow-x: hidden;
+        }
+
+        /* RETURN BUTTON */
+
+        .location-return-button {
+            position: fixed;
+            top: 22px;
+            left: 22px;
+            z-index: 999;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            color: #6b2d10;
+
+            background: rgba(255, 255, 255, 0.90);
+
+            border: 1px solid rgba(238, 117, 28, 0.25);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow: 0 8px 25px rgba(75, 35, 15, 0.12);
+
+            font-size: 14px;
+            font-weight: 800;
+
+            transition:
+                background .35s ease,
+                color .35s ease,
+                transform .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .location-return-button:hover {
+            color: #ffffff;
+            background: #ef741c;
+
+            transform:
+                translateX(-4px)
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(239, 116, 28, 0.32);
+        }
+
+        .return-arrow {
+            font-size: 19px;
+            transition: transform .3s ease;
+        }
+
+        .location-return-button:hover .return-arrow {
+            transform: translateX(-4px);
+        }
+
+        /* MAIN SECTION */
+
+        .kg-location-section {
+            position: relative;
+
+            width: 100%;
+            min-height: 100vh;
+
+            padding:
+                100px
+                7%
+                90px;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 5% 10%,
+                    rgba(255,144,48,.18),
+                    transparent 27%
+                ),
+                radial-gradient(
+                    circle at 95% 85%,
+                    rgba(111,49,17,.13),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fff9ef,
+                    #f9e6cc
+                );
+
+            display: flex;
+            align-items: center;
+        }
+
+        /* BACKGROUND GLOWS */
+
+        .location-glow {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        .glow-one {
+            width: 350px;
+            height: 350px;
+
+            right: -160px;
+            top: -130px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,126,24,.20),
+                    transparent 70%
+                );
+
+            animation:
+                locationGlowOne
+                8s
+                ease-in-out
+                infinite;
+        }
+
+        .glow-two {
+            width: 300px;
+            height: 300px;
+
+            left: -140px;
+            bottom: -140px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(128,58,20,.16),
+                    transparent 70%
+                );
+
+            animation:
+                locationGlowTwo
+                10s
+                ease-in-out
+                infinite;
+        }
+
+        /* LAYOUT */
+
+        .location-wrapper {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0,.9fr)
+                minmax(0,1.1fr);
+
+            gap: 55px;
+
+            align-items: center;
+        }
+
+        .location-info,
+        .map-area {
+            min-width: 0;
+        }
+
+        /* TEXT */
+
+        .location-label {
+            display: inline-block;
+
+            margin-bottom: 15px;
+
+            color: #ec7218;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 2.5px;
+        }
+
+        .location-info h2 {
+            max-width: 520px;
+
+            margin: 0 0 22px;
+
+            color: #4b210d;
+
+            font-size:
+                clamp(
+                    38px,
+                    5vw,
+                    58px
+                );
+
+            line-height: 1.05;
+        }
+
+        .location-info h2 span {
+            display: block;
+            color: #ed7118;
+        }
+
+        .location-intro {
+            max-width: 520px;
+
+            margin-bottom: 34px;
+
+            color: #775e4c;
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ADDRESS CARD */
+
+        .address-card {
+            max-width: 540px;
+
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            padding:
+                22px
+                24px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .80
+                );
+
+            border:
+                1px solid
+                rgba(
+                    235,
+                    113,
+                    23,
+                    .18
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    92,
+                    44,
+                    17,
+                    .09
+                );
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease;
+        }
+
+        .address-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 18px 42px
+                rgba(
+                    92,
+                    44,
+                    17,
+                    .14
+                );
+        }
+
+        /* PIN */
+
+        .pin-area {
+            position: relative;
+
+            flex:
+                0
+                0
+                76px;
+
+            width: 76px;
+            height: 90px;
+
+            display: flex;
+
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .location-pin {
+            position: relative;
+
+            width: 58px;
+            height: 58px;
+
+            border-radius:
+                50%
+                50%
+                50%
+                10px;
+
+            transform: rotate(-45deg);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef6e15,
+                    #ff9a38
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    239,
+                    110,
+                    21,
+                    .32
+                );
+
+            animation:
+                pinIdle
+                3s
+                ease-in-out
+                infinite;
+        }
+
+        .location-pin::before {
+            content: "";
+
+            position: absolute;
+
+            width: 18px;
+            height: 18px;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
+
+            border-radius: 50%;
+
+            background:
+                #fff4e7;
+        }
+
+        /* STEAM */
+
+        .steam {
+            position: absolute;
+
+            width: 7px;
+            height: 34px;
+
+            top: 0;
+
+            border-left:
+                3px solid
+                rgba(
+                    235,
+                    111,
+                    24,
+                    .40
+                );
+
+            border-radius: 50%;
+
+            opacity: 0;
+
+            animation:
+                steamRise
+                2.8s
+                ease-in-out
+                infinite;
+        }
+
+        .steam-1 {
+            left: 24px;
+        }
+
+        .steam-2 {
+            left: 37px;
+            animation-delay: .7s;
+        }
+
+        .steam-3 {
+            left: 50px;
+            animation-delay: 1.3s;
+        }
+
+        /* ADDRESS TEXT */
+
+        .address-text {
+            min-width: 0;
+        }
+
+        .address-text span {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #eb711a;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .address-text h3 {
+            margin-bottom: 5px;
+
+            color: #51240e;
+
+            font-size: 21px;
+        }
+
+        .address-text p {
+            color: #735d50;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            overflow-wrap: anywhere;
+        }
+
+        /* DIRECTIONS BUTTON */
+
+        .location-buttons {
+            display: flex;
+            margin-top: 28px;
+        }
+
+        .directions-button {
+            min-height: 52px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding:
+                0
+                24px;
+
+            border-radius: 50px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ed6e15,
+                    #ff9835
+                );
+
+            box-shadow:
+                0 11px 26px
+                rgba(
+                    239,
+                    110,
+                    21,
+                    .28
+                );
+
+            transition:
+                transform .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .directions-button:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 16px 34px
+                rgba(
+                    239,
+                    110,
+                    21,
+                    .38
+                );
+        }
+
+        .button-icon {
+            transition: transform .3s ease;
+        }
+
+        .directions-button:hover .button-icon {
+            transform: translateX(4px);
+        }
+
+        /* MAP */
+
+        .map-area {
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                rgba(
+                    238,
+                    117,
+                    28,
+                    .18
+                );
+
+            box-shadow:
+                0 25px 65px
+                rgba(
+                    82,
+                    40,
+                    15,
+                    .16
+                );
+
+            animation:
+                mapIdle
+                6s
+                ease-in-out
+                infinite;
+        }
+
+        .map-top-label {
+            min-height: 56px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                12px
+                22px;
+
+            color: #55260f;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff8ef,
+                    #ffebd2
+                );
+        }
+
+        .map-dot {
+            flex:
+                0
+                0
+                9px;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background:
+                #ef741c;
+
+            box-shadow:
+                0 0 0
+                6px
+                rgba(
+                    239,
+                    116,
+                    28,
+                    .12
+                );
+
+            animation:
+                mapDotPulse
+                2s
+                ease-in-out
+                infinite;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 440px;
+        }
+
+        .map-frame iframe {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+        .map-footer {
+            min-height: 58px;
+
+            padding:
+                13px
+                20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background: #ffffff;
+
+            font-size: 13px;
+
+            color: #785e4c;
+        }
+
+        .map-footer a {
+            flex-shrink: 0;
+
+            color: #e86d18;
+
+            text-decoration: none;
+
+            font-weight: 800;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+
+            .kg-location-section {
+                padding:
+                    100px
+                    5%
+                    65px;
+            }
+
+            .location-wrapper {
+                grid-template-columns:
+                    1fr;
+
+                max-width: 720px;
+
+                gap: 42px;
+            }
+
+            .location-info {
+                text-align: center;
+            }
+
+            .location-info h2,
+            .location-intro {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .address-card {
+                margin-left: auto;
+                margin-right: auto;
+
+                text-align: left;
+            }
+
+            .location-buttons {
+                justify-content: center;
+            }
+
+            .map-frame {
+                height: 400px;
+            }
+
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .location-return-button {
+                top: 14px;
+                left: 14px;
+
+                padding:
+                    10px
+                    14px;
+
+                font-size: 13px;
+            }
+
+            .kg-location-section {
+                padding:
+                    88px
+                    16px
+                    50px;
+            }
+
+            .location-wrapper {
+                gap: 32px;
+            }
+
+            .location-label {
+                margin-bottom: 12px;
+
+                font-size: 10px;
+
+                letter-spacing: 2px;
+            }
+
+            .location-info h2 {
+                font-size: 38px;
+
+                line-height: 1.08;
+
+                margin-bottom: 18px;
+            }
+
+            .location-intro {
+                margin-bottom: 26px;
+
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+            .address-card {
+                width: 100%;
+
+                padding:
+                    18px
+                    16px;
+
+                gap: 14px;
+
+                border-radius: 18px;
+            }
+
+            .pin-area {
+                flex:
+                    0
+                    0
+                    58px;
+
+                width: 58px;
+                height: 76px;
+            }
+
+            .location-pin {
+                width: 48px;
+                height: 48px;
+            }
+
+            .location-pin::before {
+                width: 15px;
+                height: 15px;
+            }
+
+            .steam {
+                height: 27px;
+            }
+
+            .steam-1 {
+                left: 16px;
+            }
+
+            .steam-2 {
+                left: 28px;
+            }
+
+            .steam-3 {
+                left: 40px;
+            }
+
+            .address-text h3 {
+                font-size: 18px;
+            }
+
+            .address-text p {
+                font-size: 13px;
+            }
+
+            .location-buttons {
+                width: 100%;
+
+                margin-top: 22px;
+            }
+
+            .directions-button {
+                width: 100%;
+
+                min-height: 52px;
+            }
+
+            .map-area {
+                border-radius: 22px;
+
+                animation:
+                    mobileMapIdle
+                    6s
+                    ease-in-out
+                    infinite;
+            }
+
+            .map-top-label {
+                min-height: 50px;
+
+                padding:
+                    10px
+                    16px;
+
+                font-size: 13px;
+            }
+
+            .map-frame {
+                height: 330px;
+            }
+
+            .map-footer {
+                min-height: auto;
+
+                padding:
+                    14px
+                    16px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
+
+                font-size: 12px;
+            }
+
+            .map-footer a {
+                width: 100%;
+            }
+
+        }
+
+        /* SMALL PHONES */
+
+        @media (max-width: 380px) {
+
+            .kg-location-section {
+                padding:
+                    84px
+                    12px
+                    42px;
+            }
+
+            .location-info h2 {
+                font-size: 32px;
+            }
+
+            .location-intro {
+                font-size: 14px;
+            }
+
+            .address-card {
+                align-items: flex-start;
+            }
+
+            .pin-area {
+                flex-basis: 50px;
+                width: 50px;
+            }
+
+            .location-pin {
+                width: 42px;
+                height: 42px;
+            }
+
+            .address-text h3 {
+                font-size: 17px;
+            }
+
+            .address-text p {
+                font-size: 12px;
+            }
+
+            .map-frame {
+                height: 280px;
+            }
+
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes steamRise {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(14px)
+                    rotate(-5deg);
+            }
+
+            45% {
+                opacity: .8;
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translateY(-24px)
+                    rotate(15deg)
+                    scale(1.15);
+            }
+
+        }
+
+        @keyframes pinIdle {
+
+            0%,
+            100% {
+                transform:
+                    rotate(-45deg)
+                    translate(0,0);
+            }
+
+            50% {
+                transform:
+                    rotate(-45deg)
+                    translate(4px,-4px);
+            }
+
+        }
+
+        @keyframes mapIdle {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-5px);
+            }
+
+        }
+
+        @keyframes mobileMapIdle {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-2px);
+            }
+
+        }
+
+        @keyframes mapDotPulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 0
+                    5px
+                    rgba(
+                        239,
+                        116,
+                        28,
+                        .12
+                    );
+            }
+
+            50% {
+                box-shadow:
+                    0 0 0
+                    10px
+                    rgba(
+                        239,
+                        116,
+                        28,
+                        .04
+                    );
+            }
+
+        }
+
+        @keyframes locationGlowOne {
+
+            0%,
+            100% {
+                transform:
+                    translate(0,0);
+            }
+
+            50% {
+                transform:
+                    translate(-35px,35px)
+                    scale(1.1);
+            }
+
+        }
+
+        @keyframes locationGlowTwo {
+
+            0%,
+            100% {
+                transform:
+                    translate(0,0);
+            }
+
+            50% {
+                transform:
+                    translate(35px,-25px)
+                    scale(1.08);
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    .01ms !important;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- RETURN BUTTON -->
+    <a href="home.html" class="location-return-button">
+        <span class="return-arrow">←</span>
+        <span>Return</span>
+    </a>
+
+
+    <section class="kg-location-section">
+
+        <div class="location-glow glow-one"></div>
+        <div class="location-glow glow-two"></div>
+
+
+        <div class="location-wrapper">
+
+
+            <!-- LOCATION DETAILS -->
+            <div class="location-info">
+
+                <div class="location-label">
+                    FIND OUR KITCHEN
+                </div>
+
+
+                <h2>
+                    Come Find
+                    <span>Kusinang Gamay</span>
+                </h2>
+
+
+                <p class="location-intro">
+                    Good food is worth the trip. Visit us and enjoy
+                    comforting dishes made for sharing with family
+                    and friends.
+                </p>
+
+
+                <!-- ADDRESS CARD -->
+                <div class="address-card">
+
+                    <div class="pin-area">
+
+                        <div class="steam steam-1"></div>
+                        <div class="steam steam-2"></div>
+                        <div class="steam steam-3"></div>
+
+                        <div class="location-pin"></div>
+
+                    </div>
+
+
+                    <div class="address-text">
+
+                        <span>
+                            OUR LOCATION
+                        </span>
+
+
+                        <h3>
+                            Champaca Street
+                        </h3>
+
+
+                        <p>
+                            Champaca Street, Poblacion,
+                            Polomolok, South Cotabato
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DIRECTIONS -->
+                <div class="location-buttons">
+
+                    <a
+                        href="https://maps.app.goo.gl/qDJ878fZnLjy7Tb17"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="directions-button"
+                    >
+
+                        <span class="button-icon">
+                            ➜
+                        </span>
+
+                        Get Directions
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- GOOGLE MAP -->
+            <div class="map-area">
+
+                <div class="map-top-label">
+
+                    <span class="map-dot"></span>
+
+                    Kusinang Gamay
+
+                </div>
+
+
+                <div class="map-frame">
+
+                    <iframe
+                        src="https://www.google.com/maps?q=Champaca%20Street%2C%20Poblacion%2C%20Polomolok%2C%20South%20Cotabato&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                </div>
+
+
+                <div class="map-footer">
+
+                    <span>
+                        📍 Polomolok, South Cotabato
+                    </span>
+
+
+                    <a
+                        href="https://maps.app.goo.gl/qDJ878fZnLjy7Tb17"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open in Maps ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</body>
+</html>

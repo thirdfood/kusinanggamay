@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/KusinangGamayIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About Us | Kusinang Gamay</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    /* =========================================
+       GLOBAL
+    ========================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --orange: #ff6500;
+      --orange-soft: #f47b20;
+      --orange-dark: #d66016;
+
+      --cream: #fff8ef;
+      --cream-2: #ffead1;
+
+      --brown: #452716;
+      --brown-light: #71513d;
+
+      --white: #ffffff;
+
+      --shadow:
+        0 25px 70px rgba(92, 46, 16, 0.14);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+
+    /* =========================================
+       STICKY HEADER
+    ========================================= */
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+
+      z-index: 9999;
+
+      background: #ffffff;
+
+      border-bottom:
+        1px solid rgba(103, 45, 10, 0.12);
+
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* Header Inner Container */
+
+    .header-container {
+      max-width: 1300px;
+      height: 90px;
+
+      margin: 0 auto;
+      padding: 0 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    /* =========================================
+       LOGO
+    ========================================= */
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      width: auto;
+      height: 70px;
+
+      display: block;
+      object-fit: contain;
+    }
+
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-nav a {
+      position: relative;
+
+      text-decoration: none;
+
+      color: #6b2d0b;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      padding: 11px 16px;
+
+      border-radius: 30px;
+
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+
+    /* Hover */
+
+    .header-nav a:hover {
+      background: #ff6500;
+      color: #ffffff;
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* Active Page */
+
+    .header-nav a.active {
+      background: #ff6500;
+      color: #ffffff;
+    }
+
+
+    /* =========================================
+       FOOD PAGE INTRO TRANSITION
+    ========================================= */
+
+    .page-loader {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 20000;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff6500,
+          #f78a2b
+        );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+
+      animation:
+        loaderExit
+        1s
+        cubic-bezier(.77, 0, .18, 1)
+        1.7s
+        forwards;
+    }
+
+
+    /* Plate */
+
+    .loader-plate {
+      position: relative;
+
+      width: 175px;
+      height: 175px;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+
+      border:
+        13px solid
+        #ffe4c3;
+
+      box-shadow:
+        inset 0 0 0 4px #ffc98a,
+        0 30px 60px
+        rgba(91, 40, 10, 0.25);
+
+      animation:
+        plateEntrance
+        0.9s
+        cubic-bezier(.22, 1, .36, 1);
+    }
+
+
+    .loader-food {
+      position: absolute;
+
+      width: 72px;
+      height: 72px;
+
+      border-radius: 50%;
+
+      top: 38px;
+      left: 38px;
+
+      background:
+        radial-gradient(
+          circle at 34% 30%,
+          #ffd45b 0 12%,
+          transparent 13%
+        ),
+
+        radial-gradient(
+          circle at 70% 35%,
+          #d84727 0 12%,
+          transparent 13%
+        ),
+
+        radial-gradient(
+          circle at 35% 70%,
+          #4d9d45 0 12%,
+          transparent 13%
+        ),
+
+        radial-gradient(
+          circle,
+          #f6a03c 0 50%,
+          #d86620 51% 100%
+        );
+
+      animation:
+        spinFood
+        2s
+        linear
+        infinite;
+    }
+
+
+    .loader-text {
+      position: absolute;
+
+      top:
+        calc(50% + 120px);
+
+      color: #ffffff;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 5px;
+
+      text-transform:
+        uppercase;
+
+      animation:
+        textPulse
+        1s
+        ease
+        infinite alternate;
+    }
+
+
+    @keyframes loaderExit {
+
+      0% {
+        transform:
+          translateY(0);
+      }
+
+      100% {
+        transform:
+          translateY(-110%);
+      }
+
+    }
+
+
+    @keyframes plateEntrance {
+
+      from {
+        transform:
+          scale(0)
+          rotate(-40deg);
+
+        opacity: 0;
+      }
+
+      to {
+        transform:
+          scale(1)
+          rotate(0);
+
+        opacity: 1;
+      }
+
+    }
+
+
+    @keyframes spinFood {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    @keyframes textPulse {
+
+      from {
+        opacity: 0.45;
+      }
+
+      to {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =========================================
+       ABOUT SECTION
+    ========================================= */
+
+    .about-section {
+      position: relative;
+
+      min-height:
+        calc(100vh - 90px);
+
+      padding:
+        100px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+
+        radial-gradient(
+          circle at 8% 15%,
+          rgba(255, 151, 55, 0.24),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(255, 101, 0, 0.18),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #fffaf3 0%,
+          #fff3e3 48%,
+          #ffe1bd 100%
+        );
+    }
+
+
+    /* Decorative circles */
+
+    .about-section::before {
+      content: "";
+
+      position: absolute;
+
+      width: 320px;
+      height: 320px;
+
+      border:
+        55px solid
+        rgba(255, 101, 0, 0.07);
+
+      border-radius: 50%;
+
+      top: -150px;
+      right: -100px;
+    }
+
+
+    .about-section::after {
+      content: "";
+
+      position: absolute;
+
+      width: 230px;
+      height: 230px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 171, 86, 0.11);
+
+      bottom: -80px;
+      left: -80px;
+    }
+
+
+    /* =========================================
+       FLOATING FOOD ELEMENTS
+    ========================================= */
+
+    .food-decoration {
+      position: absolute;
+
+      z-index: 1;
+
+      display: grid;
+      place-items: center;
+
+      width: 78px;
+      height: 78px;
+
+      border-radius: 24px;
+
+      background:
+        rgba(255,255,255,0.7);
+
+      backdrop-filter:
+        blur(10px);
+
+      box-shadow:
+        0 20px 50px
+        rgba(103,45,10,0.12);
+
+      font-size: 31px;
+
+      animation:
+        floatingFood
+        5s
+        ease-in-out
+        infinite;
+    }
+
+
+    .food-decoration.food-1 {
+      top: 18%;
+      left: 5%;
+    }
+
+
+    .food-decoration.food-2 {
+      top: 26%;
+      right: 6%;
+
+      animation-delay:
+        -1.5s;
+    }
+
+
+    .food-decoration.food-3 {
+      bottom: 12%;
+      left: 9%;
+
+      animation-delay:
+        -2.5s;
+    }
+
+
+    .food-decoration.food-4 {
+      bottom: 15%;
+      right: 10%;
+
+      animation-delay:
+        -3.3s;
+    }
+
+
+    @keyframes floatingFood {
+
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(-5deg);
+      }
+
+      50% {
+        transform:
+          translateY(-18px)
+          rotate(5deg);
+      }
+
+    }
+
+
+    /* =========================================
+       ABOUT CARD
+    ========================================= */
+
+    .about-container {
+      position: relative;
+
+      z-index: 3;
+
+      width:
+        min(920px, 92%);
+
+      margin:
+        auto;
+
+      padding:
+        75px 70px;
+
+      text-align:
+        center;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.89
+        );
+
+      border:
+        1px solid
+        rgba(
+          244,
+          123,
+          32,
+          0.15
+        );
+
+      border-radius:
+        40px;
+
+      backdrop-filter:
+        blur(15px);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+
+    /* =========================================
+       ABOUT LABEL
+    ========================================= */
+
+    .about-label {
+      display:
+        inline-block;
+
+      padding:
+        10px 19px;
+
+      margin-bottom:
+        25px;
+
+      border-radius:
+        100px;
+
+      background:
+        #fff0df;
+
+      color:
+        var(--orange-dark);
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      letter-spacing:
+        3px;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    /* =========================================
+       TITLE
+    ========================================= */
+
+    .about-container h1 {
+      max-width:
+        780px;
+
+      margin:
+        0 auto 24px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        clamp(
+          45px,
+          6vw,
+          76px
+        );
+
+      line-height:
+        1.04;
+
+      letter-spacing:
+        -2px;
+
+      color:
+        var(--brown);
+    }
+
+
+    .about-container h1 span {
+      color:
+        var(--orange);
+    }
+
+
+    /* =========================================
+       DIVIDER
+    ========================================= */
+
+    .about-divider {
+      width:
+        190px;
+
+      margin:
+        26px auto 36px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+    }
+
+
+    .about-divider::before,
+    .about-divider::after {
+
+      content: "";
+
+      flex: 1;
+
+      height:
+        1px;
+
+      background:
+        rgba(
+          244,
+          123,
+          32,
+          0.45
+        );
+    }
+
+
+    .about-divider span {
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      margin:
+        0 14px;
+
+      border-radius:
+        50%;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        var(--orange);
+
+      font-size:
+        19px;
+
+      box-shadow:
+        0 9px 25px
+        rgba(
+          244,
+          123,
+          32,
+          0.26
+        );
+    }
+
+
+    /* =========================================
+       DESCRIPTION
+    ========================================= */
+
+    .about-description {
+      max-width:
+        770px;
+
+      margin:
+        auto;
+    }
+
+
+    .about-description p {
+
+      margin-bottom:
+        22px;
+
+      font-size:
+        17px;
+
+      line-height:
+        1.9;
+
+      color:
+        var(--brown-light);
+    }
+
+
+    .about-description strong {
+
+      color:
+        var(--orange-dark);
+
+      font-weight:
+        700;
+    }
+
+
+    /* =========================================
+       SIGNATURE
+    ========================================= */
+
+    .about-signature {
+
+      position:
+        relative;
+
+      max-width:
+        720px;
+
+      margin:
+        42px auto 0;
+
+      padding-top:
+        35px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        23px;
+
+      line-height:
+        1.55;
+
+      color:
+        var(--brown);
+    }
+
+
+    .about-signature::before {
+
+      content: "";
+
+      position:
+        absolute;
+
+      top:
+        0;
+
+      left:
+        50%;
+
+      width:
+        65px;
+
+      height:
+        3px;
+
+      transform:
+        translateX(-50%);
+
+      border-radius:
+        20px;
+
+      background:
+        var(--orange);
+    }
+
+
+    .about-signature span {
+
+      color:
+        var(--orange);
+
+      font-weight:
+        700;
+    }
+
+
+    /* =========================================
+       SCROLL REVEAL
+    ========================================= */
+
+    .reveal {
+
+      opacity:
+        0;
+
+      transform:
+        translateY(45px)
+        scale(0.98);
+
+      transition:
+        opacity
+        0.9s
+        cubic-bezier(.22,1,.36,1),
+
+        transform
+        0.9s
+        cubic-bezier(.22,1,.36,1);
+    }
+
+
+    .reveal.active {
+
+      opacity:
+        1;
+
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+
+    /* =========================================
+       TABLET HEADER
+    ========================================= */
+
+    @media (max-width: 900px) {
+
+      .header-container {
+        padding:
+          0 20px;
+      }
+
+      .header-logo img {
+        height:
+          58px;
+      }
+
+      .header-nav {
+        gap:
+          2px;
+      }
+
+      .header-nav a {
+        font-size:
+          12px;
+
+        padding:
+          9px 10px;
+      }
+
+      .about-container {
+        padding:
+          65px 45px;
+      }
+
+      .food-decoration {
+        opacity:
+          0.6;
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 650px) {
+
+      .sticky-header {
+        position:
+          sticky;
+
+        top:
+          0;
+      }
+
+
+      .header-container {
+
+        width:
+          100%;
+
+        height:
+          auto;
+
+        min-height:
+          80px;
+
+        padding:
+          10px 15px;
+
+        flex-direction:
+          column;
+
+        justify-content:
+          center;
+
+        gap:
+          8px;
+      }
+
+
+      .header-logo img {
+
+        height:
+          50px;
+      }
+
+
+      .header-nav {
+
+        width:
+          100%;
+
+        justify-content:
+          center;
+
+        flex-wrap:
+          wrap;
+
+        gap:
+          3px;
+
+        row-gap:
+          4px;
+      }
+
+
+      .header-nav a {
+
+        font-size:
+          11px;
+
+        padding:
+          7px 10px;
+      }
+
+
+      .about-section {
+
+        min-height:
+          auto;
+
+        padding:
+          70px 15px;
+      }
+
+
+      .about-container {
+
+        width:
+          100%;
+
+        padding:
+          55px 25px;
+
+        border-radius:
+          28px;
+      }
+
+
+      .about-container h1 {
+
+        font-size:
+          clamp(
+            38px,
+            11vw,
+            55px
+          );
+
+        letter-spacing:
+          -1px;
+      }
+
+
+      .about-description p {
+
+        font-size:
+          16px;
+
+        line-height:
+          1.8;
+      }
+
+
+      .about-signature {
+
+        font-size:
+          20px;
+      }
+
+
+      .food-decoration {
+
+        width:
+          58px;
+
+        height:
+          58px;
+
+        border-radius:
+          18px;
+
+        font-size:
+          24px;
+
+        opacity:
+          0.45;
+      }
+
+
+      .food-decoration.food-1 {
+        top:
+          3%;
+
+        left:
+          2%;
+      }
+
+
+      .food-decoration.food-2 {
+        top:
+          6%;
+
+        right:
+          2%;
+      }
+
+
+      .food-decoration.food-3,
+      .food-decoration.food-4 {
+
+        display:
+          none;
+      }
+
+    }
+
+
+    /* =========================================
+       SMALL MOBILE
+    ========================================= */
+
+    @media (max-width: 390px) {
+
+      .header-logo img {
+
+        height:
+          44px;
+      }
+
+
+      .header-nav a {
+
+        font-size:
+          9px;
+
+        padding:
+          6px 7px;
+      }
+
+
+      .about-container {
+
+        padding:
+          45px 19px;
+      }
+
+
+      .about-label {
+
+        font-size:
+          10px;
+
+        letter-spacing:
+          2px;
+      }
+
+    }
+
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       FOOD INTRO TRANSITION
+  ========================================== -->
+
+  <div class="page-loader">
+
+    <div class="loader-plate">
+
+      <div class="loader-food"></div>
+
+    </div>
+
+    <div class="loader-text">
+      Serving Our Story
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================
+       STICKY HEADER
+  ========================================== -->
+
+  <header class="sticky-header">
+
+    <div class="header-container">
+
+
+      <!-- LOGO -->
+
+      <a
+        href="index.html"
+        class="header-logo"
+      >
+
+        <img
+          src="assets/KusinangGamay.png"
+          alt="Kusinang Gamay"
+        >
+
+      </a>
+
+
+
+      <!-- NAVIGATION -->
+
+      <nav class="header-nav">
+
+        <a href="home.html">
+          HOME
+        </a>
+
+        <a
+          href="about us.html"
+          class="active"
+        >
+          ABOUT US
+        </a>
+
+        <a href="menu.html">
+          MENU
+        </a>
+
+        <a href="contacts.html">
+          CONTACT US
+        </a>
+
+        <a href="location.html">
+          LOCATION
+        </a>
+
+      </nav>
+
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================================
+       ABOUT US
+  ========================================== -->
+
+  <main>
+
+    <section class="about-section">
+
+
+      <!-- FLOATING FOOD -->
+
+      <div class="food-decoration food-1">
+        🌶️
+      </div>
+
+      <div class="food-decoration food-2">
+        🍚
+      </div>
+
+      <div class="food-decoration food-3">
+        🥥
+      </div>
+
+      <div class="food-decoration food-4">
+        🍲
+      </div>
+
+
+
+      <!-- ABOUT CARD -->
+
+      <div class="about-container reveal">
+
+
+        <div class="about-label">
+          About Us
+        </div>
+
+
+        <h1>
+          Where every dish
+          <span>tells a story.</span>
+        </h1>
+
+
+
+        <div class="about-divider">
+
+          <span>
+            🍽️
+          </span>
+
+        </div>
+
+
+
+        <div class="about-description">
+
+          <p>
+            At
+            <strong>Kusinang Gamay</strong>,
+            we celebrate Filipino cuisine not simply as food,
+            but as a reflection of our culture, memories,
+            and the people who bring it to the table.
+          </p>
+
+
+          <p>
+            From comforting home-cooked classics to flavors
+            passed down through generations, every dish carries
+            a piece of what makes Filipino cooking special.
+          </p>
+
+
+          <p>
+            Our goal is to bring these flavors closer to
+            everyone—one recipe, one story, and one
+            unforgettable bite at a time.
+          </p>
+
+        </div>
+
+
+
+        <div class="about-signature">
+
+          Kusinang Gamay —
+
+          <span>
+            maliit man ang kusina,
+            malaki ang lasa at kwento.
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <script>
+
+    /* =========================================
+       SCROLL REVEAL
+    ========================================== */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    const revealObserver =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target
+                .classList
+                .add("active");
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.15
+        }
+
+      );
+
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(element);
+
+    });
+
+
+    /* =========================================
+       REMOVE LOADER AFTER ANIMATION
+    ========================================== */
+
+    const pageLoader =
+      document.querySelector(".page-loader");
+
+
+    setTimeout(() => {
+
+      if (pageLoader) {
+
+        pageLoader.style.display =
+          "none";
+
+      }
+
+    }, 3000);
+
+  </script>
+
+
+</body>
+</html>
