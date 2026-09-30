@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kusinang Gamay — Play</title>
+
+<style>
+:root{
+  --bg-dark:#191218;
+  --bg-dark-2:#261820;
+  --cream:#ffe8b7;
+  --cream-2:#f2c978;
+  --red:#9d393d;
+  --red-dark:#61262d;
+  --wood:#754432;
+  --wood-dark:#40282a;
+  --gold:#e8ac3f;
+  --green:#557f50;
+  --green-dark:#304c32;
+  --ink:#2b2025;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg-dark);
+  font-family:"Courier New", monospace;
+}
+
+body{
+  min-height:100vh;
+  min-height:100dvh;
+  overflow:hidden;
+  color:var(--cream);
+}
+
+button,
+a{
+  font:inherit;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.game-page{
+  position:relative;
+  width:100%;
+  height:100vh;
+  height:100dvh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(177,71,69,.24), transparent 28%),
+    radial-gradient(circle at 80% 80%, rgba(227,170,61,.13), transparent 30%),
+    linear-gradient(#281921,#140f14);
+}
+
+/* subtle pixel tiles */
+.game-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.18;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 95%,rgba(255,255,255,.07) 95%),
+    linear-gradient(transparent 95%,rgba(255,255,255,.05) 95%);
+  background-size:32px 32px;
+}
+
+/* =========================================================
+   DECORATIVE KITCHEN
+========================================================= */
+
+.kitchen-light{
+  position:absolute;
+  top:-110px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(760px,90vw);
+  height:300px;
+  pointer-events:none;
+
+  background:radial-gradient(
+    ellipse at center,
+    rgba(255,205,104,.26),
+    transparent 67%
+  );
+}
+
+.hanging-pan{
+  position:absolute;
+  top:0;
+  font-size:clamp(30px,4vw,48px);
+  opacity:.42;
+  filter:grayscale(.4);
+  animation:panSwing 4s steps(5,end) infinite;
+  transform-origin:top center;
+}
+
+.pan-1{left:10%;}
+.pan-2{
+  right:11%;
+  animation-delay:-2s;
+}
+
+@keyframes panSwing{
+  0%,100%{transform:rotate(-3deg);}
+  50%{transform:rotate(3deg);}
+}
+
+/* =========================================================
+   MAIN PANEL
+========================================================= */
+
+.welcome-card{
+  position:relative;
+  z-index:5;
+  width:min(850px,94vw);
+  text-align:center;
+  padding:clamp(24px,5vw,50px);
+
+  background:
+    linear-gradient(rgba(255,233,184,.97),rgba(237,192,112,.97));
+
+  color:var(--ink);
+
+  border:8px solid var(--ink);
+
+  box-shadow:
+    0 0 0 7px var(--wood),
+    15px 15px 0 rgba(0,0,0,.34);
+}
+
+/* pixel corners */
+.welcome-card::before,
+.welcome-card::after{
+  content:"";
+  position:absolute;
+  width:54px;
+  height:54px;
+  background:var(--red);
+  border:5px solid var(--red-dark);
+  opacity:.22;
+}
+
+.welcome-card::before{
+  top:12px;
+  left:12px;
+}
+
+.welcome-card::after{
+  right:12px;
+  bottom:12px;
+}
+
+/* =========================================================
+   PIXEL POT LOGO
+========================================================= */
+
+.pixel-pot{
+  width:96px;
+  height:68px;
+  position:relative;
+  margin:0 auto 20px;
+
+  background:#d8953f;
+  border:7px solid var(--ink);
+
+  box-shadow:8px 8px 0 rgba(100,53,42,.32);
+
+  animation:potBounce 1.5s steps(3,end) infinite;
+}
+
+.pixel-pot::before{
+  content:"";
+  position:absolute;
+  width:58px;
+  height:8px;
+
+  top:-19px;
+  left:12px;
+
+  background:var(--ink);
+}
+
+.pixel-pot::after{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:24px;
+
+  right:-24px;
+  top:13px;
+
+  background:#e9b75a;
+  border:6px solid var(--ink);
+}
+
+@keyframes potBounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+
+/* steam */
+.steam{
+  position:absolute;
+  width:9px;
+  height:38px;
+  bottom:72px;
+  background:rgba(255,255,255,.65);
+
+  animation:steamUp 1.7s steps(5,end) infinite;
+}
+
+.steam:nth-child(1){
+  left:28px;
+}
+
+.steam:nth-child(2){
+  left:48px;
+  height:28px;
+  animation-delay:.45s;
+}
+
+.steam:nth-child(3){
+  left:65px;
+  height:34px;
+  animation-delay:.8s;
+}
+
+@keyframes steamUp{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  40%{
+    opacity:.7;
+  }
+  to{
+    opacity:0;
+    transform:translateY(-25px);
+  }
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.eyebrow{
+  margin-bottom:8px;
+  font-size:clamp(9px,1.6vw,12px);
+  font-weight:900;
+  letter-spacing:4px;
+  color:#714233;
+}
+
+.game-title{
+  margin:0;
+
+  font-size:clamp(38px,8vw,78px);
+  line-height:.9;
+  letter-spacing:3px;
+
+  color:#fff1b0;
+
+  text-shadow:
+    4px 4px 0 #a84242,
+    8px 8px 0 #6e3436,
+    11px 11px 0 rgba(0,0,0,.15);
+}
+
+.subtitle{
+  margin:22px auto 8px;
+  max-width:590px;
+
+  font-weight:900;
+  font-size:clamp(13px,2.2vw,18px);
+  line-height:1.5;
+
+  color:#56362e;
+}
+
+.tagline{
+  display:inline-block;
+
+  margin-top:10px;
+  padding:7px 12px;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+
+  background:#f8d998;
+  border:4px solid #644336;
+}
+
+/* =========================================================
+   ORDER TICKET
+========================================================= */
+
+.ticket{
+  width:min(420px,90%);
+  margin:25px auto 0;
+  padding:12px;
+
+  position:relative;
+
+  background:#fff8dd;
+  border:4px solid #563830;
+
+  box-shadow:5px 5px 0 rgba(0,0,0,.13);
+}
+
+.ticket-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+
+  font-size:9px;
+  font-weight:900;
+  color:#7c5946;
+}
+
+.ticket-line{
+  height:3px;
+  margin:9px 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #94705b 0 7px,
+      transparent 7px 12px
+    );
+}
+
+.ticket-title{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.ticket-status{
+  margin-top:7px;
+  font-size:9px;
+  font-weight:900;
+  color:#8d5342;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.actions{
+  margin-top:24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+
+  gap:14px;
+}
+
+.pixel-btn{
+  appearance:none;
+
+  min-width:220px;
+
+  padding:16px 24px;
+
+  border:5px solid var(--green-dark);
+  background:var(--green);
+
+  color:white;
+
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:2px;
+
+  cursor:pointer;
+
+  box-shadow:
+    inset 0 4px 0 rgba(255,255,255,.16),
+    inset -4px -4px 0 rgba(0,0,0,.13),
+    7px 7px 0 var(--green-dark);
+
+  transition:
+    transform .08s,
+    box-shadow .08s,
+    filter .15s;
+}
+
+.pixel-btn:hover{
+  filter:brightness(1.08);
+}
+
+.pixel-btn:active{
+  transform:translate(5px,5px);
+
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,.12),
+    inset -2px -2px 0 rgba(0,0,0,.14),
+    2px 2px 0 var(--green-dark);
+}
+
+.secondary-btn{
+  min-width:170px;
+
+  background:#a14b48;
+  border-color:#652f32;
+
+  box-shadow:
+    inset 0 4px 0 rgba(255,255,255,.14),
+    inset -4px -4px 0 rgba(0,0,0,.15),
+    7px 7px 0 #652f32;
+}
+
+/* =========================================================
+   ORDER-UP STAMP
+========================================================= */
+
+.order-stamp{
+  position:absolute;
+  inset:50% auto auto 50%;
+
+  z-index:90;
+
+  padding:12px 20px;
+
+  border:7px solid #a83e3e;
+
+  color:#a83e3e;
+
+  font-size:clamp(26px,8vw,64px);
+  font-weight:900;
+  letter-spacing:4px;
+
+  background:#fff0c9;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-9deg)
+    scale(4);
+
+  opacity:0;
+  pointer-events:none;
+}
+
+.order-stamp.show{
+  animation:stampOrder .42s steps(4,end) forwards;
+}
+
+@keyframes stampOrder{
+  0%{
+    opacity:0;
+    transform:
+      translate(-50%,-50%)
+      rotate(-9deg)
+      scale(4);
+  }
+
+  75%{
+    opacity:1;
+    transform:
+      translate(-50%,-50%)
+      rotate(-9deg)
+      scale(.9);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translate(-50%,-50%)
+      rotate(-9deg)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   GIANT SERVING CLOCHE TRANSITION
+========================================================= */
+
+.food-transition{
+  position:fixed;
+  inset:0;
+
+  z-index:5000;
+
+  pointer-events:none;
+  visibility:hidden;
+}
+
+.food-transition.active{
+  visibility:visible;
+}
+
+.cloche{
+  position:absolute;
+
+  left:50%;
+  top:-120vh;
+
+  transform:translateX(-50%);
+
+  width:150vw;
+  height:150vh;
+
+  border-radius:50% 50% 10% 10%;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 25%,
+      #f6df9c 0 8%,
+      #d7a94f 9% 35%,
+      #8e593d 68%,
+      #432b2c 100%
+    );
+
+  border:12px solid #2c2025;
+
+  box-shadow:
+    inset 0 -30px 0 rgba(0,0,0,.18),
+    0 20px 50px rgba(0,0,0,.6);
+}
+
+.cloche::before{
+  content:"";
+
+  position:absolute;
+
+  width:90px;
+  height:48px;
+
+  top:-42px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#d7a94f;
+  border:10px solid #2c2025;
+}
+
+.food-transition.active .cloche{
+  animation:clocheDrop 1s steps(9,end) forwards;
+}
+
+@keyframes clocheDrop{
+  0%{
+    top:-150vh;
+  }
+
+  70%{
+    top:-35vh;
+  }
+
+  85%{
+    top:-39vh;
+  }
+
+  100%{
+    top:-37vh;
+  }
+}
+
+/* =========================================================
+   STEAM WIPE
+========================================================= */
+
+.steam-wipe{
+  position:absolute;
+  inset:0;
+
+  opacity:0;
+
+  background:
+    radial-gradient(circle at 10% 80%,rgba(255,255,255,.98) 0 9%,transparent 10%),
+    radial-gradient(circle at 30% 70%,rgba(255,255,255,.94) 0 12%,transparent 13%),
+    radial-gradient(circle at 52% 82%,rgba(255,255,255,.98) 0 11%,transparent 12%),
+    radial-gradient(circle at 70% 68%,rgba(255,255,255,.95) 0 12%,transparent 13%),
+    radial-gradient(circle at 92% 80%,rgba(255,255,255,.98) 0 10%,transparent 11%),
+    linear-gradient(transparent,#fff 70%);
+
+  transform:translateY(100%);
+}
+
+.food-transition.steam-time .steam-wipe{
+  animation:steamCover .58s ease-out forwards;
+}
+
+@keyframes steamCover{
+  from{
+    opacity:.2;
+    transform:translateY(100%);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+  .game-page{
+    padding:14px;
+  }
+
+  .welcome-card{
+    width:96vw;
+    padding:22px 14px;
+    border-width:6px;
+  }
+
+  .pixel-pot{
+    transform:scale(.8);
+    margin-bottom:5px;
+  }
+
+  .subtitle{
+    margin-top:18px;
+  }
+
+  .ticket{
+    margin-top:18px;
+  }
+
+  .actions{
+    margin-top:18px;
+  }
+
+  .pixel-btn{
+    width:min(330px,92%);
+  }
+}
+
+/* landscape phones */
+@media(max-height:520px) and (orientation:landscape){
+
+  .game-page{
+    padding:8px;
+  }
+
+  .welcome-card{
+    width:min(900px,96vw);
+    padding:12px 18px;
+  }
+
+  .pixel-pot{
+    width:58px;
+    height:42px;
+    border-width:5px;
+    margin-bottom:5px;
+  }
+
+  .pixel-pot::before{
+    width:34px;
+    height:6px;
+    top:-13px;
+    left:7px;
+  }
+
+  .pixel-pot::after{
+    width:13px;
+    height:16px;
+    right:-18px;
+    border-width:4px;
+  }
+
+  .steam{
+    display:none;
+  }
+
+  .eyebrow{
+    margin-bottom:3px;
+    font-size:7px;
+  }
+
+  .game-title{
+    font-size:clamp(28px,7vw,54px);
+  }
+
+  .subtitle{
+    margin:10px auto 3px;
+    font-size:11px;
+  }
+
+  .tagline{
+    margin-top:5px;
+    padding:4px 8px;
+    font-size:7px;
+    border-width:3px;
+  }
+
+  .ticket{
+    margin-top:10px;
+    padding:7px;
+  }
+
+  .ticket-line{
+    margin:5px 0;
+  }
+
+  .actions{
+    margin-top:10px;
+  }
+
+  .pixel-btn{
+    min-width:180px;
+    padding:10px 17px;
+    font-size:10px;
+    border-width:4px;
+  }
+}
+
+/* accessibility */
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="game-page">
+
+  <div class="kitchen-light"></div>
+
+  <div class="hanging-pan pan-1">🍳</div>
+  <div class="hanging-pan pan-2">🥘</div>
+
+  <section class="welcome-card">
+
+    <div class="pixel-pot" aria-hidden="true">
+      <i class="steam"></i>
+      <i class="steam"></i>
+      <i class="steam"></i>
+    </div>
+
+    <div class="eyebrow">
+      THIRDFOOD PRESENTS
+    </div>
+
+    <h1 class="game-title">
+      KUSINANG<br>GAMAY
+    </h1>
+
+    <p class="subtitle">
+      The kitchen is open.
+      Take the orders, cook fast, keep your customers happy,
+      and earn your place in the Hall of Fame.
+    </p>
+
+    <div class="tagline">
+      PIXEL KITCHEN RUSH
+    </div>
+
+    <div class="ticket" id="orderTicket">
+
+      <div class="ticket-top">
+        <span>ORDER #001</span>
+        <span>KITCHEN OPEN</span>
+      </div>
+
+      <div class="ticket-line"></div>
+
+      <div class="ticket-title">
+        👨‍🍳 YOUR SHIFT IS READY
+      </div>
+
+      <div class="ticket-status" id="ticketStatus">
+        TAP PLAY WHEN YOU'RE READY TO COOK
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="pixel-btn"
+        id="playGameBtn"
+        type="button"
+      >
+        ▶ PLAY KUSINANG GAMAY
+      </button>
+
+      <a
+        class="pixel-btn secondary-btn"
+        href="#"
+        id="hallOfFameBtn"
+      >
+        🏆 HALL OF FAME
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- ORDER-UP STAMP -->
+<div
+  class="order-stamp"
+  id="orderStamp"
+  aria-hidden="true"
+>
+  ORDER UP!
+</div>
+
+
+<!-- FOOD TRANSITION -->
+<div
+  class="food-transition"
+  id="foodTransition"
+  aria-hidden="true"
+>
+
+  <div class="cloche"></div>
+
+  <div class="steam-wipe"></div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CHANGE THESE TWO URLS
+========================================================= */
+
+const GAME_URL = "kusinang_gamay_STANDALONE_PAUSE_FULLSCREEN.html";
+
+const HALL_OF_FAME_URL = "hall-of-fame.html";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const playBtn =
+  document.getElementById("playGameBtn");
+
+const hallBtn =
+  document.getElementById("hallOfFameBtn");
+
+const orderStamp =
+  document.getElementById("orderStamp");
+
+const transition =
+  document.getElementById("foodTransition");
+
+const ticketStatus =
+  document.getElementById("ticketStatus");
+
+
+/* =========================================================
+   HALL OF FAME
+========================================================= */
+
+hallBtn.href = HALL_OF_FAME_URL;
+
+
+/* =========================================================
+   PLAY TRANSITION
+========================================================= */
+
+let transitionRunning = false;
+
+playBtn.addEventListener("click", () => {
+
+  if(transitionRunning) return;
+
+  transitionRunning = true;
+
+  playBtn.disabled = true;
+
+  ticketStatus.textContent =
+    "ORDER RECEIVED — PREPARING YOUR KITCHEN...";
+
+
+  /* Step 1 — stamp the order ticket */
+  orderStamp.classList.add("show");
+
+
+  /* Step 2 — giant serving cloche drops */
+  setTimeout(() => {
+
+    transition.classList.add("active");
+
+  }, 380);
+
+
+  /* Step 3 — steam covers the screen */
+  setTimeout(() => {
+
+    transition.classList.add("steam-time");
+
+  }, 1080);
+
+
+  /* Step 4 — enter the actual game */
+  setTimeout(() => {
+
+    window.location.href = GAME_URL;
+
+  }, 1600);
+
+});
+
+</script>
+
+</body>
+</html>
